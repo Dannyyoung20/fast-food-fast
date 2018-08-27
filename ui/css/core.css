@@ -1,0 +1,36 @@
+
+/* Table Of Contents */
+/*
+* 
+*  1. Root Variables
+*  
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*/
+
+
+
+/*  1.  Root Variables */
+
+:root{
+    --primary-color-light: #A400E1;
+    --primary-color-dark: ;
+    --header-color: #242424;
+    --text-color-light: #666666;
+    --text-color-dark: #727272;
+    --border-color: #E4E4E4;
+    --gradient-primary: #D400FA;
+    --gradient-secondary: #9E00FF;
+}
