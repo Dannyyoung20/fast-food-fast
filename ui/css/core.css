@@ -29,14 +29,15 @@
 /*  2.  Root Variables */
 
 :root{
-    --primary-color-light: #9E00FF;
-    --primary-color-dark: #2F9EF4;
+    --primary-color-light: #5D1049;
+    --primary-color-dark: #4E0D2A;
+    --primary-backdrop: #720D5D;
+    --secondary-color: #E30425;
     --header-color: #242424;
-    --text-color-light: #1D262D;
-    --text-color-dark: #727272;
+    --text-color-light: #5f6368;
+    --text-color-dark: #373D3F;
     --border-color: #E4E4E4;
-    --gradient-primary: #D400FA;
-    --gradient-secondary: #9E00FF;
+    --nav-height: 72px;
 }
 
 
@@ -74,12 +75,14 @@ ul, p {
 
 body {
     margin: 0;
-    font-family: 'Proxima Nova', 'geomanist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-color-light);
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;
+    letter-spacing: 0.0125rem;
+    background: #FFFFFF;
 }
 
 h1,
@@ -101,7 +104,7 @@ a {
 
 .nav {
     width: 100%;
-    height: 56px;
+    height: var(--nav-height);
     position: relative;
 }
 
@@ -111,7 +114,7 @@ a {
 }
 
 .nav--shadow {
-    box-shadow: 0 2px 16px rgba(0, 0, 0, .23);
+    box-shadow: 2px 4px 10px rgba(0,0,0,.2);
 }
 
 .nav__inner {
@@ -127,16 +130,25 @@ a {
 }
 
 .nav__logo {
-    padding-top: 13px;
-    font-size: 20px;
+    line-height: var(--nav-height);
+    font-size: 18px;
     font-weight: 600;
-    font-family: 'Proxima Nova';
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .23);
+    font-family: 'Roboto Mono', monospace;
     float: left;
+    text-transform: uppercase;
 }
 
 .nav__logo span {
-    color: var(--primary-color-dark);
+    color: var(--primary-color-light);
+}
+
+.nav__logo .nav__logo--icon{
+    background: url(../img/food-truck.png) 100% 50%/auto 100% no-repeat;
+    display: inline-block;
+    vertical-align: -7px;
+    height: 32px;
+    margin-right: 16px;
+    width: 32px;
 }
 
 .nav__links {
@@ -144,17 +156,21 @@ a {
     padding: 0;
     float: right;
     list-style: none;
+    line-height: var(--nav-height);
 }
 
 .nav__links li {
     display: inline-block;
-    padding-top: 16px;
     margin-left: 18px;
 }
 
 .nav__links li a {
     font-weight: 500;
     color: var(--text-color-light);
+}
+
+.nav__links li a:hover {
+    color: var(--text-color-dark);
 }
 
 /*   GRID CSS    */
@@ -190,9 +206,8 @@ a {
 }
 
 .hero--bg-img {
-    background-image: url('../img/berry-blur-close-up-566888.jpg');
-    background-size: cover;
-    background-position-y: 0px;
+    background: #720D5D url('../img/food-delivery-poster-in-purple-background-with-vector-17273077.jpg');
+    background-size: 425px;
     width: 100%;
     height: 425px;
     padding-bottom: 2em;
@@ -210,5 +225,9 @@ a {
 }
 
 .bg-primary {
-    background: var(--primary-color-dark);
+    background: var(--primary-color-light);
+}
+
+.icon--p-color {
+    color: var(--primary-color-light);
 }

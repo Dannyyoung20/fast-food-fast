@@ -11,14 +11,11 @@
 }
 
 @font-face {
-    font-family: 'Proxima Nova';
-    src: url('../fonts/ Simonson - Proxima Nova Alt Regular-webfont.eot');
-    src: url('../fonts/ Simonson - Proxima Nova Alt Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/ Simonson - Proxima Nova Alt Regular-webfont.woff2') format('woff2'),
-         url('../fonts/ Simonson - Proxima Nova Alt Regular-webfont.woff') format('woff'),
-         url('../fonts/ Simonson - Proxima Nova Alt Regular-webfont.ttf') format('truetype'),
-         url('../fonts/ Simonson - Proxima Nova Alt Regular-webfont.svg#proxima_nova_altregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
 
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('../fonts/Roboto_Mono/RobotoMono-Regular.ttf');
 }
