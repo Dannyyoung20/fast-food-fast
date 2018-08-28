@@ -611,6 +611,17 @@ a {
     height: 490px;
 }
 
+.cart .selected {
+    display: block;
+    font-size: 12px;
+}
+
+.cart__date {
+    padding-top: 25px;
+    margin-left: 40px;
+    font-size: 14px;
+}
+
 /*   Utilities   */
 
 .overflow {
