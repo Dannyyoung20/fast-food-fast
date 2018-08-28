@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fast Food Fast</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/core.css" type="text/css" />
+    <link rel="icon" href="img/food-truck.png" />
+</head>
+<body class="bg-grey">
+    <nav class="nav nav--primary nav--checkout">
+        <div class="nav__inner">
+            <div class="nav__logo">
+                <p><i class="nav__logo--icon"></i>Fast<span>Food</span></p>
+            </div>
+            <ul class="nav__links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">History</a></li>
+                <li><a class="nav__total" href="#">Total: &#8358; 7,000</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="checkout-form">
+       <div class="title">
+           <p class="title__text title__text--xs mt-3">Checkout</p>
+       </div>
+       <form>
+           <div class="checkout-input-group">
+               <label for="card-no">Card No</label>
+               <input type="text" name="card-no" id="card-no" placeholder="XXXX XXXX XXXX"/>
+           </div>
+           <div class="checkout-input-group">
+                <label for="card-name">Name on Card</label>
+                <input type="text" name="card-name" id="card-name" placeholder="John Doe"/>
+            </div>
+            <div class="checkout-input-group">
+                <label for="expiry">Expiry Date</label>
+                <input type="text" class="half-width" name="expiry-month" id="expiry" placeholder="MM"/>
+                <input type="text" class="half-width" name="epiry-year" placeholder="YY"/>
+            </div>
+            <div class="checkout-input-group">
+                <label for="expiry">CVC</label>
+                <input type="text" class="half-width fl" name="epiry-year" placeholder="314"/>
+                <input type="text" class="half-width" name="epiry-year" placeholder="Zip code"/>
+            </div>
+            <p class="terms">By clicking proceed you agree to all our <a href="#">terms and conditions.</a></p>
+            <button class="button button--primary">Pay &#8358; 7,000</button>
+       </form>
+    </section>
+</body>
+</html>
