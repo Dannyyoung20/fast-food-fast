@@ -9,9 +9,9 @@
 ***  5. Navigation CSS - line 98
 ***  6. Grid CSS
 ***  7. Hero CSS
-***
-***
-***
+***  8. Section CSS
+***  9. Card CSS
+***  10. Button CSS
 ***
 ***
 ***
@@ -32,12 +32,15 @@
     --primary-color-light: #5D1049;
     --primary-color-dark: #4E0D2A;
     --primary-backdrop: #720D5D;
+    --primary-button-color: #7E4AAD;
     --secondary-color: #E30425;
     --header-color: #242424;
     --text-color-light: #5f6368;
-    --text-color-dark: #373D3F;
+    --text-color-dark: #202124;
     --border-color: #E4E4E4;
     --nav-height: 72px;
+    --success-color: #04d36f;
+    --button-hover-color: #6a3d91;
 }
 
 
@@ -91,8 +94,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'quitador', Arial, Helvetica, sans-serif;
-    color: var(--header-color);
+    margin: 0;
 }
 
 a {
@@ -161,27 +163,29 @@ a {
 
 .nav__links li {
     display: inline-block;
-    margin-left: 18px;
+    padding: 0 11px;
 }
 
 .nav__links li a {
     font-weight: 500;
-    color: var(--text-color-light);
+    color: var(--text-color-dark);
 }
 
 .nav__links li a:hover {
-    color: var(--text-color-dark);
+    color: var(--text-color-light);
 }
 
 /*   GRID CSS    */
 
 .wrapper {
-    max-width: 71.250em;
+    max-width: 840px;
+    padding: 0 40px;
     margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
 }
 
-/* .three-col .grid-item {
-    width: 33.333333%;
+.three-col .grid-item {
     float: left;
 }
 
@@ -197,9 +201,9 @@ a {
     margin-left: 12px;
     margin-right: 12px;
     float: left;
-} */
+}
 
-/*   Hero CSS    */
+/*  7.  Hero CSS    */
 
 .hero {
     width: 100%;
@@ -213,6 +217,199 @@ a {
     padding-bottom: 2em;
 }
 
+/*   8. Section CSS   */
+
+
+.section {
+    padding-bottom: 7em;
+}
+
+
+.section__inner {
+    padding-top: 30px;
+}
+
+
+/*   9. Card CSS   */
+
+.card {
+    position: relative;
+    background:#FFFFFF;
+    max-width: 250px;
+    height: 90px;
+}
+
+.card::after {
+    clear: both;
+    display: table;
+    content: '';
+}
+
+.card--has-shadow {
+    box-shadow: 0px 2px 10px rgba(0,0,0,.15);
+}
+
+.card--shape {
+    border-top-left-radius: 15px;
+    border-top: 2px solid var(--primary-backdrop);
+}
+
+.card__image {
+    position: relative;
+    width: 25%;
+    float: left;
+}
+
+.card__image img {
+    width: 100%;
+    position: absolute;
+    margin: 7px 5px;
+}
+
+.card__content {
+    width: 73%;
+    height: 100%;
+    margin-left: 27%;
+}
+
+.card__title {
+    font-size: 12px;
+    text-align: center;
+}
+
+.card__button {
+    text-align: center;
+}
+
+.card__button .button {
+    padding: 3px 8px;
+}
+
+.card__price {
+    font-size: 13px;
+    text-align: center;
+}
+
+.card__content .button--clicked {
+    background: var(--success-color);
+    color: #FFFFFF;
+}
+
+/*   10. Button CSS   */
+
+.button {
+    border: none;
+    padding: 10px 18px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.button--primary {
+    background: var(--primary-button-color);
+    color: white;
+}
+
+.button--primary:hover {
+    background: var(--button-hover-color);
+}
+
+.button--secondary {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.fab__menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 17px 15px;
+    width: 50px;
+    height: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.20);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.fab {
+    font-weight: 400;
+    border: 0;
+    background: none;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 18px;
+    right: 15px;
+    font-size: 34px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 12px;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.fab i {
+    width: 100%;
+    display: inline-block;
+    font-size: 19px;
+    vertical-align: -2px;
+}
+
+.fab__menu.open {
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    width: 200px;
+    height: 250px;
+    border-radius: 2px;
+    overflow-y: auto;
+}
+
+.fab__menu.open .fab {
+    color: #999;
+}
+
+.fab__menu.open .fab__menu__content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.fab__menu__title {
+    font-size: 12px;
+    margin: 0 0 13px 0;
+}
+
+.fab__menu__content {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+  }
+  
+
+.fab__menu__content__list li{
+    margin: 0 0 3px 0;
+    transform: translateX(20px);
+    transition: 0.2s;
+}
+
+.fab__menu__content__list li span {
+    font-size: 13px;
+}
+
+.fab__menu.open .fab__menu__content__list li { 
+    transform: translateX(0); 
+}
+
+.fab__menu__content__list li:nth-child(1) { 
+    transition-delay: 0.08s; 
+}
+
+.fab__menu__content__list li:nth-child(2) { 
+    transition-delay: 0.12s; 
+}
 
 /*   Utilities   */
 
@@ -230,4 +427,71 @@ a {
 
 .icon--p-color {
     color: var(--primary-color-light);
+}
+
+.title {
+    text-align: center;
+}
+
+.title__text {
+    font-size: 60px;
+    font-family: 'Mirza';
+    text-transform: uppercase;
+}
+
+.title__text--dark {
+    color: var(--text-color-dark);
+}
+
+.mt-1 {
+    margin-top: 10px;
+}
+
+.mt-2 {
+    margin-top: 20px;
+}
+
+.mt-3 {
+    margin-top: 30px;
+}
+
+.mt-4 {
+    margin-top: 40px;
+}
+
+.mt-5 {
+    margin-top: 50px;
+}
+
+
+.pt-1 {
+    padding-top: 10px;
+}
+
+.pt-2 {
+    padding-top: 20px;
+}
+
+.pt-3 {
+    padding-top: 30px;
+}
+
+.pr {
+    position: relative;
+}
+
+.pa {
+    position: absolute;
+}
+
+/*   Custom CSS   */
+
+.load-more {
+    text-align: center;
+}
+
+.load-more .button {
+    padding: 18px 30px;
+    border-radius: 6px;
+    font-size: 14px;
 }
