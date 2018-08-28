@@ -13,7 +13,7 @@
 ***  9. Card CSS
 ***  10. Button CSS
 ***  11. Tabs CSS
-***
+***  12. Cart CSS
 ***
 ***
 ***
@@ -37,7 +37,7 @@
     --header-color: #242424;
     --text-color-light: #5f6368;
     --text-color-dark: #202124;
-    --border-color: #E4E4E4;
+    --border-color: #E1E8EE;
     --nav-height: 72px;
     --success-color: #04d36f;
     --button-hover-color: #6a3d91;
@@ -453,6 +453,119 @@ a {
     margin-right: 30px;
 }
 
+/*   12. Cart CSS   */
+
+.cart {
+    width: 750px;
+    height: 423px;
+    margin: 80px auto;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart__title {
+    height: 60px;
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 30px;
+    font-size: 18px;
+}
+
+.cart__item {
+    padding: 20px 30px;
+    height: 120px;
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart__item:last-child {
+    border-bottom: none; 
+}
+
+.button-group {
+    position: relative;
+    padding-top: 30px;
+    margin-right: 30px;
+}
+
+.remove-item {
+    display: inline-block;
+    cursor: pointer;
+    width: 18px;
+    height: 17px;
+    margin-right: 20px;
+}
+
+.cart__image {
+    margin-right: 50px;
+    width: 13%;
+}
+
+.cart__image img {
+    width: 100%;
+    height: 100%;
+}
+
+.cart__description {
+    padding-top: 10px;
+    margin-right: 60px;
+    width: 115px;
+}
+
+.cart__description span {
+    color: var(--text-color-dark);
+    font-size: 14px;
+}
+
+.cart__description select {
+    outline: none;
+    border: none;
+    padding: 3px 10px;
+    background: var(--border-color);
+    color: var(--text-color-light);
+}
+
+.cart__quantity {
+    padding-top: 20px;
+    margin-right: 60px;
+}
+
+.cart__quantity button {
+    width: 30px;
+    height: 30px;
+    background-color: var(--border-color);
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.cart__quantity input {
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 32px;
+    font-weight: 300;
+}
+
+.cart__button-minus img{
+    margin-bottom: 3px;
+}
+
+.cart__item-total-price {
+    width: 83px;
+    padding-top: 27px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.cart__button {
+    padding: 16px;
+    text-align: center;
+    font-size: 15px;
+}
 /*   Utilities   */
 
 .bg-white {
