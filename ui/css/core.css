@@ -5,8 +5,8 @@
 ***  1. Imports - line 25
 ***  2. Root Variables - line 29
 ***  3. Resetting Defaults. - line 43
-***  4. Basic tags - line 73
-***  5. Navigation CSS - line 98
+***  4. Basic tags - line 88
+***  5. Navigation CSS - line 107
 ***  6. Grid CSS
 ***  7. Hero CSS
 ***  8. Section CSS
@@ -30,7 +30,7 @@
 
 :root{
     --primary-color-light: #5D1049;
-    --primary-color-dark: #4E0D2A;
+    --primary-color-dark: #580072;
     --primary-backdrop: #720D5D;
     --primary-button-color: #7E4AAD;
     --secondary-color: #E30425;
@@ -68,6 +68,17 @@ ul, p {
     padding: 0;
 }
 
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+
 *, 
 *::before,
 *::after {
@@ -86,15 +97,6 @@ body {
     line-height: 1.5;
     letter-spacing: 0.0125rem;
     background: #FFFFFF;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
 }
 
 a {
@@ -422,7 +424,7 @@ a {
 }
 
 .bg-primary {
-    background: var(--primary-color-light);
+    background: var(--primary-color-dark);
 }
 
 .icon--p-color {
@@ -484,7 +486,7 @@ a {
     position: absolute;
 }
 
-/*   Custom CSS   */
+/*   Custom CSS - Index.html   */
 
 .load-more {
     text-align: center;
@@ -494,4 +496,157 @@ a {
     padding: 18px 30px;
     border-radius: 6px;
     font-size: 14px;
+}
+
+/*   Custom CSS - login.html   */
+
+.login {
+    position: absolute;
+    height: 450px;
+    width: 600px;
+    left: calc((100% - 600px) / 2);
+    margin-top: 3em;
+}
+
+.login__logo__container {
+    width: 100%;
+}
+
+.login__logo {
+    text-align: center;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+.login__logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.login form {
+    border-radius: 4px;
+    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+    width: 350px;
+    height: 130px;
+    position: relative;
+    text-align: center;
+    margin: 40px auto;
+    background: #FFFFFF;
+}
+
+.login input {
+    display: inline-block;
+    background: #FFFFFF;
+    width: 80%;
+    margin: 12px auto;
+    border: 0;
+    padding: 12px 0;
+    outline: 0;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.login .input-group:nth-child(1) {
+    border-bottom: 1px solid lightgrey;
+}
+
+.login .input-button {
+    margin-top: 30px;
+}
+
+.login .button {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.input-account {
+    margin-top: 30px;
+    font-size: 15px;
+}
+
+.input-account p {
+    color: #FFFFFF;
+}
+
+.input-account a {
+    color: var(--secondary-color);
+}
+
+.input-forgot {
+    color: #AAAAAA;
+    display: block;
+    margin-top: 10px;
+}
+
+/*   Custom CSS - Signup.html */
+
+.signup {
+    position: absolute;
+    height: 450px;
+    width: 600px;
+    left: calc((100% - 600px) / 2);
+    margin-top: 3em;
+}
+
+.signup__logo__container {
+    width: 100%;
+}
+
+.signup__logo {
+    text-align: center;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+.signup__logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.signup form {
+    border-radius: 4px;
+    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+    width: 350px;
+    height: 195px;
+    position: relative;
+    text-align: center;
+    margin: 40px auto;
+    background: #FFFFFF;
+}
+
+.signup input {
+    display: inline-block;
+    background: #FFFFFF;
+    width: 80%;
+    margin: 12px auto;
+    border: 0;
+    padding: 12px 0;
+    outline: 0;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.signup .input-group:nth-child(1) {
+    border-bottom: 1px solid lightgrey;
+}
+
+.signup .input-group:nth-child(2) {
+    border-bottom: 1px solid lightgrey;
+}
+
+.signup .input-button {
+    margin-top: 30px;
+}
+
+.signup .button {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
 }
