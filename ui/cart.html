@@ -27,7 +27,64 @@
             </ul>
         </div>
     </nav>
-
+    <div class="cart">
+        <div class="cart__title">Menu Items</div>
+        <div class="cart__inner">
+            <div class="cart__item">
+                <div class="button-group">
+                    <div class="remove-item">X</div>
+                </div>
+                <div class="cart__image">
+                    <img src="img/meals/hamburger.png" />
+                </div>
+                <div class="cart__description">
+                    <span>Burger</span>
+                    <select>
+                        <option value="hamburger">Small</option>
+                        <option value="hamburger">Medium</option>
+                        <option value="hamburger">Large</option>
+                    </select>
+                </div>
+                <div class="cart__quantity">
+                    <button class="cart__button-plus" type="button" name="button">
+                      <img src="img/plus.svg" alt="" />
+                    </button>
+                    <input type="text" name="name" value="1">
+                    <button class="cart__button-minus" type="button" name="button">
+                      <img src="img/minus.svg" alt="" />
+                    </button>
+                </div>
+                <div class="cart__item-total-price">&#8358; 3,000</div>
+            </div>
+            <div class="cart__item">
+                    <div class="button-group">
+                        <div class="remove-item">X</div>
+                    </div>
+                <div class="cart__image">
+                    <img src="img/meals/pizza-slice.png" />
+                </div>
+                <div class="cart__description">
+                    <span>Pizza</span>
+                    <select>
+                        <option value="hamburger">Small</option>
+                        <option selected value="hamburger">Medium</option>
+                        <option value="hamburger">Large</option>
+                    </select>
+                </div>
+                <div class="cart__quantity">
+                    <button class="cart__button-plus" type="button" name="button">
+                      <img src="img/plus.svg" alt="" />
+                    </button>
+                    <input type="text" name="name" value="4">
+                    <button class="cart__button-minus" type="button" name="button">
+                      <img src="img/minus.svg" alt="" />
+                    </button>
+                </div>
+                <div class="cart__item-total-price">&#8358; 4,000</div>
+            </div>
+        </div>
+        <button class="button button--primary cart__button mt-2">Proceed To Checkout</button>
+    </div>
     <div id="js-side-nav" class="sidenav">
         <a href="#" id="js-closebtn" class="closebtn">&times;</a>
         <a href="index.html">Home</a>
