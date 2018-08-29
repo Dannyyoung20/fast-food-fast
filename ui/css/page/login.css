@@ -1,0 +1,75 @@
+.login {
+    position: absolute;
+    height: 140px;
+    width: 400px;
+    left: calc((100% - 400px) / 2);
+    margin-top: 50px;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    margin: 20px auto;
+    background: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+
+input {
+    display: inline-block;
+    background: #FFFFFF;
+    width: 80%;
+    margin: 14px auto;
+    padding: 12px 0;
+    border: 0;
+    outline: 0;
+    font-size: 15px;
+    padding-left: 20px;
+    color: var(--text-color-light);
+}
+
+.input-group {
+    border: 0;
+    border-bottom: 1px solid lightgrey;
+}
+
+.input-group:nth-child(2) {
+    border-bottom: none;
+    margin-bottom: 30px;
+}
+
+.input-button button{
+    width: 100%;
+    border-radius: 50px;
+    padding: 16px;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.input-account {
+    color: #FFFFFF;
+}
+
+.input-account a, .input-forgot {
+    color: var(--secondary-color);
+}
+
+.input-forgot {
+    margin-top: 8px;
+    display: block;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.login__logo {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.login__logo img {
+    width: 100%;
+    height: 100%;
+}
