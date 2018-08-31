@@ -1,10 +1,10 @@
 import express from 'express';
 import _ from 'lodash';
-import uniqid from 'uniqid';
-import store from '../store';
+import Store from '../store';
 
 const router = express.Router();
 
+const store = new Store();
 
 // @route GET /api/v1/orders
 // @desc List out all the orders
@@ -20,29 +20,10 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res) => {
   // Check if the req.body is empty
   if (_.isEmpty(req.body)) return res.status(400).send('No data was passed');
-
-  // Generate an id for the particular order
-  const id = uniqid();
-
-  // Construct a db Object for the order
-  const order = {
-    user: {
-      name: req.body.name,
-      address: req.body.address,
-    },
-    order: {
-      id,
-      item: req.body.item,
-      price: req.body.price,
-      size: req.body.size,
-      quantity: req.body.quantity,
-      toppings: req.body.toppings,
-    },
-  };
-
-  // Store the order details in our store
-  store.push(order);
-  return res.status(201).json(store);
+  // Send the req.body to our Store class
+  const data = store.storeOrder(req.body);
+  // Respond with a status code of 201 if successfully created
+  return res.status(201).json(data);
 });
 
 export default router;
