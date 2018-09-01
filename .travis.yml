@@ -4,5 +4,5 @@ node_js:
 script:
   - npm run build
   - npm test
+  - npm run coverage
 before_install: npm install mocha chai supertest babel-cli babel-preset-env rimraf coveralls istanbul -g
-after_script: NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
