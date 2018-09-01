@@ -22,12 +22,12 @@ describe('post api route', () => {
   });
 });
 
-describe('put api route', () => {
+describe('delte api route', () => {
   it('should exist /api/v1/orders route', (done) => {
     request(app).delete('/api/v1/orders/1')
       .type('form')
       .send({ name: 'jdoajd' })
-      .expect(404, done);
+      .expect(200, done);
   });
 });
 
