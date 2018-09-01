@@ -9,7 +9,7 @@ describe('get api route', () => {
 
   it('should exist /api/v1/orders/<orderID> route', (done) => {
     request(app).get('/api/v1/orders/1')
-      .expect(200, done);
+      .expect(404, done);
   });
 });
 
@@ -18,7 +18,7 @@ describe('post api route', () => {
     request(app).post('/api/v1/orders')
       .type('form')
       .send({ name: 'jdoajd' })
-      .expect(200, done);
+      .expect(201, done);
   });
 });
 
@@ -27,15 +27,13 @@ describe('put api route', () => {
     request(app).delete('/api/v1/orders/1')
       .type('form')
       .send({ name: 'jdoajd' })
-      .expect(200, done);
+      .expect(404, done);
   });
 });
 
-describe('delete api route', () => {
+describe('put api route', () => {
   it('should exist /api/v1/orders route', (done) => {
     request(app).put('/api/v1/orders')
-      .type('form')
-      .send({ name: 'jdoajd' })
-      .expect(200, done);
+      .expect(404, done);
   });
 });
