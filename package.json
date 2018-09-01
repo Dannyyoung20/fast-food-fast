@@ -7,7 +7,7 @@
     "start": "npm run build && node dist/server.js",
     "build": "npm run clean && babel ./ --out-dir dist/ --ignore node_modules,ui",
     "clean": "rimraf dist",
-    "test": "mocha dist/test"
+    "test": "mocha dist/test --exit"
   },
   "repository": {
     "type": "git",
