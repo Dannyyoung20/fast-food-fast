@@ -1,0 +1,40 @@
+{
+  "name": "fast-food-fast",
+  "version": "1.0.0",
+  "description": "Fast-Food-Fast ​ is a food delivery service app for a restaurant",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm run build && node dist/server.js",
+    "build": "npm run clean && babel ./ --out-dir dist/ --ignore node_modules,ui",
+    "clean": "rimraf dist",
+    "test": "mocha dist/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dannyyoung20/fast-food-fast.git"
+  },
+  "author": "Eze Daniel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dannyyoung20/fast-food-fast/issues"
+  },
+  "homepage": "https://github.com/Dannyyoung20/fast-food-fast#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "morgan": "^1.9.0",
+    "uniqid": "^5.0.3"
+  }
+}
