@@ -1,46 +1,50 @@
 /***************************************** TABLE OF CONTENTS ********************************************/
-/*//////////////////////////////\\\\\\\\\\//\/EZE DANIEL /\/\/\\\/////////////\\\\\\\\\\\\\\\\\/\/\/\///\/\/
+/*//////////////////////////////\\\\\\\\\\     EZE DANIEL   /////////////\\\\\\\\\\\\\\\\\/\/\/\///\/\/
 * 
-***  1. Fonts Import - line 23
-***  2. Root Variables - line 26
-***  3. Resetting Defaults. - line 43
-***  4. Basic tags - line 82
-***  5. Navigation CSS - line 100
-***  6. Grid CSS - line 251
-***  7. Hero CSS - line 279
-***  8. Section CSS - line 293
-***  9. Card CSS - line 303
-***  10. Button CSS - line 368
-***  11. Cart CSS - line 497
-***  12. Utilities CSS - line 631
-***  13. Custom CSS (index.html) - line 735 
-***  14. Admin CSS - line 748
-***  15. Table CSS - line 759
-***  16. SideNav CSS - line 802
-***  17. Responsive CSS - line 831
+****  1. Fonts Import - line 23
+****  2. Root Variables - line 27
+****  3. Resetting Defaults. - line 46
+****  4. Basic tags - line 86
+****  5. Navigation CSS - line 108
+****  6. Grid CSS - line 289
+****  7. Hero CSS - line 317
+****  8. Section CSS - line 382
+****  9. Card CSS - line 416
+****  10. Button CSS - line 481
+****  11. Cart CSS - line 609
+****  12. Utilities CSS - line 744
+****  13. Custom CSS (index.html) - line 871 
+****  14. Admin CSS - line 884
+****  15. Table CSS - line 895
+****  16. SideNav CSS - line 938
+****  17. Responsive CSS - line 968
 */
 
 /*   1. Fonts Import   */
+
 @import './font.css';
 
 /*  2.  Root Variables */
+
 :root {
     --primary-color-light: #5D1049;
     --primary-color-dark: #580072;
     --primary-backdrop: #720D5D;
     --primary-button-color: #7E4AAD;
+    --primary-text-color: #717f86;
     --secondary-color: #E30425;
     --header-color: #242424;
-    --text-color-light: #5f6368;
+    --text-color-light: #7b8b8e;
     --text-color-dark: #202124;
     --border-color: #E1E8EE;
-    --nav-height: 72px;
+    --nav-height: 65px;
     --success-color: #04d36f;
     --button-hover-color: #6a3d91;
     --danger-color: #FF5154;
 }
 
 /*   3. Resetting Defaults   */
+
 article,
 aside,
 figcaption,
@@ -80,29 +84,39 @@ h6 {
 }
 
 /*  4. Basic tags   */
+
 body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+    font-family: 'Proxima Nova', 'Ubuntu', 'Roboto' sans-serif;
+    background-color: #FFFFFF;
+    color: var(--primary-text-color);
     font-size: 16px;
-    color: var(--text-color-light);
+    font-style: normal;
+    line-height: 1.43;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-    letter-spacing: 0.0125rem;
-    background: #FFFFFF;
+    font-weight: 400;
 }
 
 a {
-    color: var(--text-color-dark);
+    color: var(--primary-text-color);
     text-decoration: none;
 }
 
 /*    5. Navigation CSS    */
 
 .nav {
-    width: 100%;
+    background: #FFFFFF;
+    border: none;
+    z-index: 200;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
     height: var(--nav-height);
-    position: relative;
+    transition: top 400ms ease-in-out;
 }
 
 .nav--primary {
@@ -111,11 +125,11 @@ a {
 }
 
 .nav--shadow {
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, .2);
+    box-shadow: 4px 1px 2px 0px rgba(0, 65, 94, 0.2);
 }
 
 .nav__inner {
-    padding: 0 40px;
+    padding: 0 15px;
     height: 100%;
     position: relative;
 }
@@ -130,7 +144,7 @@ a {
     line-height: var(--nav-height);
     font-size: 18px;
     font-weight: 600;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Proxima Nova', monospace;
     float: left;
     text-transform: uppercase;
 }
@@ -163,11 +177,13 @@ a {
 .nav__links li {
     display: inline-block;
     padding: 0 11px;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 .nav__links li a {
-    font-weight: 500;
-    color: var(--text-color-dark);
+    font-weight: 400;
+    color: var(--primary-text-color);
 }
 
 .nav__links--sm {
@@ -187,7 +203,7 @@ a {
 .nav__links--sm li a {
     font-size: 19px;
     font-weight: 500;
-    color: var(--text-color-dark);
+    color: var(--text-color-light);
     padding: 12px;
 }
 
@@ -200,11 +216,11 @@ a {
 }
 
 .nav__links li a:hover {
-    color: var(--text-color-light);
+    color: #4b5658;
 }
 
 .nav--primary .nav__links li a:hover {
-    color: #AAAAAA;
+    color: #4b5658;
 }
 
 .nav--light {
@@ -248,6 +264,28 @@ a {
     color: #FFFFFF;
 }
 
+.nav__notification {
+    position: relative;
+}
+
+.nav__notification:before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #916bb3;
+    position: absolute;
+    top: -1px;
+    right: -4px;
+}
+
+.nav .icon {
+    font-size: 20px;
+    display: inline-block;
+    color: var(--primary-text-color);
+    vertical-align: -8%;
+}
+
 /*   GRID CSS    */
 
 .wrapper {
@@ -281,49 +319,47 @@ a {
 .hero {
     width: 100%;
     position: relative;
+    margin-top: 65px;
 }
 
 .hero--bg-img {
-    background: #720D5D url('../img/hero/homepage-slider-1.jpg');
+    background: #720D5D url('../img/hero/26.jpg');
     background-size: cover;
     width: 100%;
-    background-position-x: -140px;
     height: 550px;
     padding-bottom: 2em;
 }
 
 .hero__caption {
-    width: 700px;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    width: 100%;
 }
 
 .hero__caption-title .hero__title {
-    font-size: 4.5em;
+    font-size: 3.5em;
     color: #FFFFFF;
 }
 
 .hero__caption-title h1 {
-    text-shadow: 0px 4px rgba(0, 0, 0, .15);
-    height: 80px;
+    height: 60px;
 }
 
 .hero__caption-title .subtitle {
     display: inline-flex;
     align-items: center;
     color: #FFFFFF;
-    font-size: 60px;
+    font-size: 3.5em;
     font-weight: 600;
     text-transform: uppercase;
-    text-shadow: 0px 4px rgba(0, 0, 0, .15);
-    font-family: 'Mirza', 'Roboto';
+    font-family: 'Mirza';
 }
 
 .hero__caption .seperator {
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 400;
     padding: 0 0.2em;
     line-height: 1;
@@ -331,17 +367,18 @@ a {
     display: inline-block;
     font-weight: 500;
     text-transform: uppercase;
-    text-shadow: 0px 4px rgba(0, 0, 0, .15);
-    margin: 10px 0 15px 0;
+    margin-top: 10px;
     font-family: 'Mirza', 'Roboto';
 }
 
 .subtitle span {
-    background: #04d36f;
-    margin-bottom: 30px;
+    background: #a184bb;
+    margin-bottom: 20px;
     height: 60px;
     margin-left: 20px;
-    padding: 0 5px;
+    padding: 0 15px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 /*   8. Section CSS   */
 
@@ -351,6 +388,30 @@ a {
 
 .section__inner {
     padding-top: 30px;
+}
+
+.section--no-p {
+    padding-bottom: 0;
+}
+
+.section__img-image-1 {
+    background: url('../img/hero/5.jpg');
+}
+
+.section__img {
+    background-position: center;
+    background-size: cover;
+    height: 350px;
+}
+
+.section--top-border {
+    border-top: 1px solid #ebebeb;
+}
+
+footer p {
+    font-size: 12px;
+    padding: 7px 0;
+    text-transform: uppercase;
 }
 
 /*   9. Card CSS   */
@@ -479,7 +540,7 @@ a {
     color: #FFFFFF;
     position: absolute;
     bottom: 18px;
-    right: 15px;
+    right: 16px;
     font-size: 34px;
     padding: 0;
     width: 20px;
@@ -492,8 +553,7 @@ a {
 .fab i {
     width: 100%;
     display: inline-block;
-    font-size: 19px;
-    vertical-align: -2px;
+    font-size: 27px;
 }
 
 .fab__menu.open {
@@ -723,7 +783,7 @@ a {
 }
 
 .title__text--sm {
-    font-size: 35px;
+    font-size: 28px;
 }
 
 .title__text--xs {
@@ -740,6 +800,18 @@ a {
 
 .text--success {
     color: var(--success-color);
+}
+
+.text--white {
+    color: #FFFFFF;
+}
+
+.text--center {
+    text-align: center;
+}
+
+.text--shadow {
+    text-shadow: 0px 4px rgba(0, 0, 0, .03);
 }
 
 .mt-1 {
@@ -784,6 +856,17 @@ a {
 
 .bg-grey {
     background: #EFF4F5;
+}
+
+.icon {
+    font-size: 22px;
+}
+
+.center {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
 
 /*   Custom CSS - Index.html   */
@@ -859,13 +942,14 @@ a {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 100; 
+    z-index: 300; 
     top: 0; 
     left: 0;
     background-color: #FFFFFF;
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.3s; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
 }
 
 .sidenav a {
@@ -949,7 +1033,19 @@ a {
     }
 
     .hero--bg-img {
-        background-position-x: -250px;
+        height: 450px;
+    }
+
+    .hero__caption-title .hero__title {
+        font-size: 2.5em;
+    }
+
+    .subtitle {
+        font-size: 3em;
+    }
+
+    .subtitle span {
+        height: 60px;
     }
 }
 
