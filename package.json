@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/Dannyyoung20/fast-food-fast#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.2",
@@ -35,6 +34,7 @@
     "supertest": "^3.1.0"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
