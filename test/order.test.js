@@ -9,7 +9,7 @@ describe('get api route', () => {
 
   it('should exist /api/v1/orders/<orderID> route', (done) => {
     request(app).get('/api/v1/orders/1')
-      .expect(404, done);
+      .expect(200, done);
   });
 });
 

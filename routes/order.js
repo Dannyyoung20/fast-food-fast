@@ -1,5 +1,5 @@
 import express from 'express';
-import _ from 'lodash';
+import { isEmpty } from '../helpers';
 import Store from '../store';
 
 const router = express.Router();
@@ -13,7 +13,7 @@ const store = new Store();
 router.get('/', (req, res) => {
   const orders = store.showAllOrders();
   // Check if any orders exist
-  if (_.isEmpty(orders)) return res.status(200).json({ message: 'No orders at the moment' });
+  if (isEmpty(orders)) return res.status(200).json({ message: 'No orders at the moment' });
   return res.status(200).json(orders);
 });
 
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 // @access Public
 router.post('/', (req, res) => {
   // Check if the req.body is empty
-  if (_.isEmpty(req.body)) return res.status(400).send('No data was passed');
+  if (isEmpty(req.body)) return res.status(400).send('No data was passed');
   // Send the req.body to our Store class
   const data = store.storeOrder(req.body);
   // Respond with a status code of 201 if successfully created
@@ -36,7 +36,7 @@ router.get('/:orderID', (req, res) => {
   // Destructing the req.params into orderID
   const { orderID } = req.params;
   const data = store.showSpecificOrder(orderID);
-  if (_.isEmpty(data)) return res.status(404).json({ message: 'Order could not be found' });
+  if (isEmpty(data)) return res.status(404).json({ message: 'Order could not be found' });
 
   return res.status(200).json(data);
 });
@@ -49,7 +49,7 @@ router.put('/:orderID', (req, res) => {
   const { orderID } = req.params;
   // Calling the fn updateSpecificOrder and setting the return to data
   const data = store.updateSpecificOrder(orderID, req.body);
-  if (_.isEmpty(data)) return res.status(404).json({ message: 'Order does not exist' });
+  if (isEmpty(data)) return res.status(404).json({ message: 'Order does not exist' });
   return res.status(201).json(data);
 });
 
