@@ -1,5 +1,4 @@
-import uniqid from 'uniqid';
-import _ from 'lodash';
+import generator from './helpers';
 
 class Store {
   constructor() {
@@ -8,7 +7,7 @@ class Store {
 
   // generate uniqe id for an order
   static generateUid() {
-    return uniqid();
+    return generator();
   }
 
   // @params _body req.body
@@ -42,15 +41,18 @@ class Store {
   // @params _orderID req.params
   // @desc Displays a specific order
   showSpecificOrder(_orderID) {
-    const data = _.find(this.store, order => order.order.id === _orderID);
+    const data = this.store.find(order => order.order.id === _orderID);
     return data;
   }
 
   // @params _orderID req.params, _body req.body
   // @desc Updates a specific order
   updateSpecificOrder(_orderID, _body) {
-    // Getting the order item via id, the remove method deletes and returns an array of the object
-    const orderData = _.remove(this.store, order => order.order.id === _orderID);
+    // Getting the order item index
+    const orderIndex = this.store.findIndex(order => order.order.id === _orderID);
+
+    // Remove the order from our store
+    const orderData = this.store.splice(orderIndex, 1);
 
     // Construct a db Object for the order
     const order = {
@@ -75,7 +77,12 @@ class Store {
   // @params _orderID req.params
   // @desc Displays a specific order
   deleteSpecificOrder(_orderID) {
-    _.remove(this.store, order => order.order.id === _orderID);
+    // Getting the order item index
+    const orderIndex = this.store.findIndex(order => order.order.id === _orderID);
+
+    // Remove the order from our store
+    this.store.splice(orderIndex, 1);
+    return true;
   }
 }
 

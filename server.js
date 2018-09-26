@@ -16,8 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Setting up the morgan middleware
 app.use(morgan('dev'));
 
-// Setting up ejs as the view engine
-app.set('view engine', 'ejs');
 
 // Setting up handler for a specific route
 app.use('/api/v1/orders', Orders);
