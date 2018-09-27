@@ -1,6 +1,7 @@
 import express from 'express';
 import { isEmpty } from '../helpers';
 import Store from '../store';
+import db from '../db';
 
 const router = express.Router();
 
@@ -11,10 +12,12 @@ const store = new Store();
 // @desc List out all the orders
 // @access Public
 router.get('/', (req, res) => {
-  const orders = store.showAllOrders();
+  db.selectAll('orders', (err, result) => {
+    console.log(result.rows[0]);
+  });
   // Check if any orders exist
-  if (isEmpty(orders)) return res.status(200).json({ message: 'No orders at the moment' });
-  return res.status(200).json(orders);
+  // if (isEmpty(orders)) return res.status(200).json({ message: 'No orders at the moment' });
+  // return res.status(200).json(orders);
 });
 
 // @route POST /api/v1/orders
