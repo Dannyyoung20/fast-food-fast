@@ -39,10 +39,32 @@ function selectByEmailPassword(table, credentials, cb) {
   });
 }
 
+function updateById(query, id, cb) {
+  pool.connect((err, db, done) => {
+    db.query(query, [id], (error, response) => {
+      done();
+      pool.end();
+      cb(error, response);
+    });
+  });
+}
+
+function insert(query, credentials, cb) {
+  pool.connect((err, db, done) => {
+    db.query(query, credentials, (error, response) => {
+      done();
+      pool.end();
+      cb(error, response);
+    });
+  });
+}
+
 const DB = {
   selectAll,
   selectById,
   selectByEmailPassword,
+  updateById,
+  insert,
 };
 
 export default DB;
