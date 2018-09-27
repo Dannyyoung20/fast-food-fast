@@ -1,6 +1,6 @@
 # fast-food-fast
 [![Build Status](https://travis-ci.org/Dannyyoung20/fast-food-fast.svg?branch=master)](https://travis-ci.org/Dannyyoung20/fast-food-fast)
-[![Coverage Status](https://img.shields.io/coveralls/github/Dannyyoung20/fast-food-fast/master.svg?branch=master&service=github)](https://coveralls.io/github/Dannyyoung20/fast-food-fast?branch=master&service=github)
+[![Coverage Status](https://img.shields.io/coveralls/github/Dannyyoung20/fast-food-fast/master.svg?branch=master&service=github)](https://coveralls.io/github/Dannyyoung20/fast-food-fast?branch=master&service=github)[![Maintainability](https://api.codeclimate.com/v1/badges/22c0a255f0cae72a9acf37099f905f5ef12653ada670e84f59699c224dc698f1/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/22c0a255f0cae72a9acf37099f905f5ef12653ada670e84f59699c224dc698f1/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 
 Fast-Food-Fast ​ is a food delivery service app for a restaurant.  
 The TechStack include:  
