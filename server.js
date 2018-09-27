@@ -2,12 +2,17 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
-import Orders from './routes/order';
+import {
+  Order,
+  Menu,
+  User,
+  Auth,
+} from './routes';
 
 const app = express();
 
 // PORT NUMBER
-const PORT = process.env.PORT || '6000';
+const PORT = process.env.PORT || '4000';
 
 //  Setting up the body parser middleware
 app.use(bodyParser.json());
@@ -18,7 +23,10 @@ app.use(morgan('dev'));
 
 
 // Setting up handler for a specific route
-app.use('/api/v1/orders', Orders);
+app.use('/api/v1/orders', Order); // Orders Route
+app.use('/api/v1/auth', Auth); // Auth Route
+app.use('/api/v1/menu', Menu); // Menu Route
+app.use('/api/v1/user', User); // User Route
 
 app.listen(PORT, () => {
   console.log(`Running application on port ${PORT}`);
