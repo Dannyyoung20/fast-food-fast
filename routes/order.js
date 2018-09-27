@@ -13,11 +13,11 @@ const store = new Store();
 // @access Public
 router.get('/', (req, res) => {
   db.selectAll('orders', (err, result) => {
-    console.log(result.rows[0]);
+    // const response = result.row[0];
+    // Check if any orders exist
+    // if (isEmpty(orders)) return res.status(200).json({ message: 'No orders at the moment' });
+    return res.status(200).json(result);
   });
-  // Check if any orders exist
-  // if (isEmpty(orders)) return res.status(200).json({ message: 'No orders at the moment' });
-  // return res.status(200).json(orders);
 });
 
 // @route POST /api/v1/orders

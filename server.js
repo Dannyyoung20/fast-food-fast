@@ -12,7 +12,7 @@ import {
 const app = express();
 
 // PORT NUMBER
-const PORT = process.env.PORT || '6000';
+const PORT = process.env.PORT || '4000';
 
 //  Setting up the body parser middleware
 app.use(bodyParser.json());

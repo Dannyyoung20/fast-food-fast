@@ -7,7 +7,7 @@ const router = express.Router();
 // @access Public
 router.get('/:userID/orders', (req, res) => {
   const { userID } = req.params;
-  return userID;
+  return res.status(200).json(userID);
 });
 
 export default router;
