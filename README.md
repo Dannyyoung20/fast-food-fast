@@ -9,6 +9,10 @@ The TechStack include:
 3. `CSS`
 4. `HTML`
 
+### Application Links
+* `gh-pages` - https://dannyyoung20.github.io/fast-food-fast/ui
+* `heroku` - https://fast-foo.herokuapp.com/api/v1/
+
 ## Some useful api endpoints:
 * `/api/v1/orders` - `GET` Request - Fetches all the orders from the DB.  
 * `/api/v1/orders` - `POST` Request - Added orders to the DB.
