@@ -1,8 +1,9 @@
 import generator from './helpers';
+import data from './fakeData';
 
 class Store {
   constructor() {
-    this.store = [];
+    this.store = [data];
   }
 
   // generate uniqe id for an order
@@ -18,6 +19,8 @@ class Store {
       user: {
         name: _body.name,
         address: _body.address,
+        email: _body.email,
+        password: _body.password,
       },
       order: {
         id: Store.generateUid(),
@@ -41,8 +44,8 @@ class Store {
   // @params _orderID req.params
   // @desc Displays a specific order
   showSpecificOrder(_orderID) {
-    const data = this.store.find(order => order.order.id === _orderID);
-    return data;
+    const orderData = this.store.find(order => order.order.id === _orderID);
+    return orderData;
   }
 
   // @params _orderID req.params, _body req.body
@@ -59,6 +62,8 @@ class Store {
       user: {
         name: orderData[0].user.name,
         address: orderData[0].user.address,
+        email: _body.email,
+        password: _body.password,
       },
       order: {
         id: orderData[0].order.id,

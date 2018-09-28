@@ -1,7 +1,6 @@
 # fast-food-fast
 [![Build Status](https://travis-ci.org/Dannyyoung20/fast-food-fast.svg?branch=master)](https://travis-ci.org/Dannyyoung20/fast-food-fast)
-[![Coverage Status](https://img.shields.io/coveralls/github/Dannyyoung20/fast-food-fast/master.svg?branch=master&service=github)](https://coveralls.io/github/Dannyyoung20/fast-food-fast?branch=master&service=github)[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/Dannyyoung20>/fast-food-fast)
-
+[![Coverage Status](https://img.shields.io/coveralls/github/Dannyyoung20/fast-food-fast/master.svg?branch=master&service=github)](https://coveralls.io/github/Dannyyoung20/fast-food-fast?branch=master&service=github) [![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/Dannyyoung20>/fast-food-fast)
 
 Fast-Food-Fast ​ is a food delivery service app for a restaurant.  
 The TechStack include:  
@@ -9,6 +8,10 @@ The TechStack include:
 2. `Express`
 3. `CSS`
 4. `HTML`
+
+### Application Links
+* `gh-pages` - https://dannyyoung20.github.io/fast-food-fast/ui
+* `heroku` - https://fast-foo.herokuapp.com/api/v1/
 
 ## Some useful api endpoints:
 * `/api/v1/orders` - `GET` Request - Fetches all the orders from the DB.  
