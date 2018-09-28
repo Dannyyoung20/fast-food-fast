@@ -8,7 +8,7 @@ const stringArray = [];
 const iterationCount = 12;
 
 // A unique random string generator
-function generator() {
+const generator = () => {
   // Looping through our character
   for (let i = 0; i < iterationCount; i += 1) {
     // Get a random character index
@@ -27,7 +27,7 @@ function generator() {
 
   // Return our random string
   return string;
-}
+};
 
 
 export default generator;

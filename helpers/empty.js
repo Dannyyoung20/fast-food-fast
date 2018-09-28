@@ -3,7 +3,7 @@
 
 // @params array Array | Object
 // @return bool
-function isEmpty(array) {
+const isEmpty = (array) => {
   if (Array.isArray(array) && !array.length) {
     return true;
   }
@@ -14,6 +14,6 @@ function isEmpty(array) {
     }
   }
   return false;
-}
+};
 
 export default isEmpty;
