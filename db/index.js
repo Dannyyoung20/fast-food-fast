@@ -1,7 +1,4 @@
-import { Pool } from 'pg';
-import config from '../config';
-
-const pool = new Pool(config.dbOptions);
+import pool from './connection';
 
 // Fn used to get all items in angiven table
 // @params table TABLE_NAME, cb Callback fn
