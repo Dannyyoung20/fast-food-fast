@@ -7,6 +7,7 @@ const userSchema = `
     last_name VARCHAR(30),
     address TEXT,
     role INTEGER DEFAULT 0,
+    slug VARCHAR(30) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
@@ -31,6 +32,7 @@ const orderSchema = `
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     qty INTEGER NOT NULL,
     delivery_address TEXT,
+    slug VARCHAR(30) NOT NULL,
     status VARCHAR(20) DEFAULT 'pending',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
