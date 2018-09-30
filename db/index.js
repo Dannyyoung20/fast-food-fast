@@ -1,5 +1,6 @@
 import pool from './connection';
-
+// FIXME: Remove all the pool.end()
+pool.connect();
 // Fn used to get all items in angiven table
 // @params table TABLE_NAME, cb Callback fn
 const selectAll = (table, cb) => {
@@ -30,11 +31,9 @@ const selectById = (table, id, cb) => {
 
 // Fn used to get user via email and password
 // @params table TABLE_NAME, credentials [email, password], cb Callback fn
-const selectByEmailPassword = (table, credentials, cb) => {
-  const query = `SELECT * FROM ${table} WHERE email=$1 AND password=$2`;
-
+const selectByEmail = (query, cb) => {
   pool.connect((err, db, done) => {
-    db.query(query, credentials, (error, response) => {
+    db.query(query, (error, response) => {
       done();
       pool.end();
       cb(error, response);
@@ -57,21 +56,26 @@ const updateById = (query, id, cb) => {
 // Fn used to insert a record into a given table
 // @params query SQL_QUERY, credentials [], cb Callback fn
 const insert = (query, credentials, cb) => {
-  pool.connect((err, db, done) => {
-    db.query(query, credentials, (error, response) => {
-      done();
-      pool.end();
-      cb(error, response);
-    });
+  pool.query(query, credentials, (error, response) => {
+    cb(error, response);
+  });
+};
+
+// Fn used to insert a record into a given table
+// @params query SQL_QUERY, credentials [], cb Callback fn
+const queryDB = (query, credentials, cb) => {
+  pool.query(query, credentials, (error, response) => {
+    cb(error, response);
   });
 };
 
 const DB = {
   selectAll,
   selectById,
-  selectByEmailPassword,
+  selectByEmail,
   updateById,
   insert,
+  queryDB,
 };
 
 export default DB;

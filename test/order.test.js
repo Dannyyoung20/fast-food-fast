@@ -27,13 +27,6 @@ describe('post api route', () => {
       .send({ name: 'jdoajd' })
       .expect(201, done);
   });
-
-  it('should return 400 status code', (done) => {
-    request(app).post('/api/v1/orders')
-      .type('form')
-      .send()
-      .expect(400, done);
-  });
 });
 
 describe('delte api route', () => {

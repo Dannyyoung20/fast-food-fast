@@ -1,4 +1,10 @@
+# Environment variables
+.env
+
+# node_modules
 node_modules
+
+# Transpiled folder
 dist
 
 yarn.lock
