@@ -3,10 +3,12 @@ const userSchema = `
   CREATE TABLE IF NOT EXISTS users(
     id SERIAL UNIQUE PRIMARY KEY,
     email VARCHAR(30) UNIQUE NOT NULL,
+    password VARCHAR(200) NOT NULL,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     address TEXT,
     role INTEGER DEFAULT 0,
+    slug VARCHAR(30) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
@@ -32,6 +34,7 @@ const orderSchema = `
     qty INTEGER NOT NULL,
     delivery_address TEXT,
     status VARCHAR(20) DEFAULT 'pending',
+    slug VARCHAR(30) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
   );

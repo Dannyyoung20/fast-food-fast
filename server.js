@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
 
 import {
   Order,
@@ -8,6 +9,8 @@ import {
   User,
   Auth,
 } from './routes';
+
+dotenv.config();
 
 const app = express();
 

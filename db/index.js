@@ -30,11 +30,9 @@ const selectById = (table, id, cb) => {
 
 // Fn used to get user via email and password
 // @params table TABLE_NAME, credentials [email, password], cb Callback fn
-const selectByEmailPassword = (table, credentials, cb) => {
-  const query = `SELECT * FROM ${table} WHERE email=$1 AND password=$2`;
-
+const selectByEmail = (query, cb) => {
   pool.connect((err, db, done) => {
-    db.query(query, credentials, (error, response) => {
+    db.query(query, (error, response) => {
       done();
       pool.end();
       cb(error, response);
@@ -69,7 +67,7 @@ const insert = (query, credentials, cb) => {
 const DB = {
   selectAll,
   selectById,
-  selectByEmailPassword,
+  selectByEmail,
   updateById,
   insert,
 };
