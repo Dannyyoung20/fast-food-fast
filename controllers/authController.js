@@ -69,6 +69,23 @@ class Authentication {
     });
   }
 
+  static login(req, res) {
+    const { email, password } = req.body;
+    Authentication.VERIFY_PASSWORD(email, password, (error, isPassword) => {
+      if (error) throw error;
+      if (!isPassword) return res.status(400).json({ message: 'Invalid email or password' });
+    });
+    const query = `SELECT * FROM users WHERE email = '${email}'`;
+    db.selectByEmail(query, (err, result) => {
+      if (err) throw err;
+      const user = {
+        email: result.rows[0].email,
+        slug: result.rows[0].slug,
+      };
+      const token = Authentication.JWT_GENERATE(user);
+      return res.status(200).json({ message: 'Successfully logged in', token });
+    });
+  }
 }
 
 export default Authentication;
