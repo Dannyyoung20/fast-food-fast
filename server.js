@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
+import cors from 'cors';
 
 import {
   Order,
@@ -8,6 +10,8 @@ import {
   User,
   Auth,
 } from './routes';
+
+dotenv.config();
 
 const app = express();
 
@@ -20,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Setting up the morgan middleware
 app.use(morgan('dev'));
+
+app.use(cors());
 
 
 // Setting up handler for a specific route

@@ -3,6 +3,7 @@ const userSchema = `
   CREATE TABLE IF NOT EXISTS users(
     id SERIAL UNIQUE PRIMARY KEY,
     email VARCHAR(30) UNIQUE NOT NULL,
+    password VARCHAR(200) NOT NULL,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     address TEXT,
@@ -17,8 +18,9 @@ const userSchema = `
 const menuSchema = `
   CREATE TABLE IF NOT EXISTS menu(
     id SERIAL UNIQUE PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
+    name VARCHAR(30) UNIQUE NOT NULL,
     price INTEGER NOT NULL,
+    img VARCHAR(100) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
@@ -32,8 +34,8 @@ const orderSchema = `
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     qty INTEGER NOT NULL,
     delivery_address TEXT,
-    slug VARCHAR(30) NOT NULL,
     status VARCHAR(20) DEFAULT 'pending',
+    slug VARCHAR(30) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
