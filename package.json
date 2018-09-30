@@ -10,7 +10,7 @@
     "test": "mocha dist/test --exit",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec dist/test/*.js --exit",
     "coverage_info": "istanbul cover _mocha dist/test/*.js --exit && istanbul-coveralls",
-    "clean_slate": "npm run build && node ./dist/db/models/index.js"
+    "clean_slate": "npm run build && node ./dist/db/migrations/index.js"
   },
   "repository": {
     "type": "git",

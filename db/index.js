@@ -1,5 +1,6 @@
 import pool from './connection';
-
+// FIXME: Remove all the pool.end()
+pool.connect();
 // Fn used to get all items in angiven table
 // @params table TABLE_NAME, cb Callback fn
 const selectAll = (table, cb) => {
@@ -55,12 +56,16 @@ const updateById = (query, id, cb) => {
 // Fn used to insert a record into a given table
 // @params query SQL_QUERY, credentials [], cb Callback fn
 const insert = (query, credentials, cb) => {
-  pool.connect((err, db, done) => {
-    db.query(query, credentials, (error, response) => {
-      done();
-      pool.end();
-      cb(error, response);
-    });
+  pool.query(query, credentials, (error, response) => {
+    cb(error, response);
+  });
+};
+
+// Fn used to insert a record into a given table
+// @params query SQL_QUERY, credentials [], cb Callback fn
+const queryDB = (query, credentials, cb) => {
+  pool.query(query, credentials, (error, response) => {
+    cb(error, response);
   });
 };
 
@@ -70,6 +75,7 @@ const DB = {
   selectByEmail,
   updateById,
   insert,
+  queryDB,
 };
 
 export default DB;

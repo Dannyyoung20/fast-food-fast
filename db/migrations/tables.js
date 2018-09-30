@@ -18,8 +18,9 @@ const userSchema = `
 const menuSchema = `
   CREATE TABLE IF NOT EXISTS menu(
     id SERIAL UNIQUE PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
+    name VARCHAR(30) UNIQUE NOT NULL,
     price INTEGER NOT NULL,
+    img VARCHAR(100) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
