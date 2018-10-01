@@ -20,4 +20,3 @@ after_script:
 before_script:
   - psql -c 'create database fast_food;' -U postgres
   - export JWT_SECRET=4AF36685d35B8889A9d8801576B28b79C7AD8209
-#  - psql -c "update USER foo WITH PASSWORD 'bar';" -U postgres
