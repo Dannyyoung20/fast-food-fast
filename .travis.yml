@@ -1,8 +1,7 @@
 language: node_js
 env:
   global:
-    - PGPASSWORD=''
-    - PGPORT=5432
+    - DB='postgres://postgres@localhost:5432/fast_food'
 node_js:
   - "10"
 services:
