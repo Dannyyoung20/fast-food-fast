@@ -1,5 +1,9 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+const dbPassword = process.env.PGPASSWORD;
 const config = {
-  dbUri: 'postgres://postgres:P@55menow@localhost:5432/fast_food',
+  dbUri: `postgres://postgres:${dbPassword}@localhost:5432/fast_food`,
   dbOptions: {
     user: 'postgres',
     database: 'fast_food',
