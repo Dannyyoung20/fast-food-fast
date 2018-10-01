@@ -1,6 +1,6 @@
 language: node_js
 env:
-  - PGPASSWORD: ''
+  - DB='postgres://postgres@localhost:5432/fast_food'
 node_js:
   - "10"
 services:
@@ -14,10 +14,11 @@ script:
   - npm run build
   - npm test
   - npm run coverage
-before_install: npm install mocha chai supertest babel-cli babel-preset-env rimraf codeclimate-test-reporter coveralls istanbul -g
+before_install: npm install mocha chai supertest babel-cli babel-preset-env codeclimate-test-reporter coveralls istanbul -g
 after_script:
   - ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info
   - codeclimate-test-reporter < ./coverage/lcov.info
 before_script:
   - psql -c 'create database fast_food;' -U postgres
+  - export JWT_SECRET=4AF36685d35B8889A9d8801576B28b79C7AD8209
 #  - psql -c "update USER foo WITH PASSWORD 'bar';" -U postgres
