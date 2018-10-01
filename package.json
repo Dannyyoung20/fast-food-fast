@@ -7,8 +7,8 @@
     "start": "npm run build && node dist/server.js",
     "build": "npm run clean && babel ./ --out-dir dist/ --ignore node_modules,ui",
     "clean": "rm -rf dist",
-    "test": "mocha dist/test --exit",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec dist/test/*.js --exit",
+    "test": "npm run clean_slate && mocha dist/test --exit",
+    "coverage": "npm run clean_slate && istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec dist/test/*.js --exit",
     "coverage_info": "istanbul cover _mocha dist/test/*.js --exit && istanbul-coveralls",
     "clean_slate": "npm run build && node ./dist/db/migrations/index.js"
   },
