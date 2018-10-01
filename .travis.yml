@@ -1,6 +1,7 @@
 language: node_js
 env:
   - DB='postgres://postgres@localhost:5432/fast_food'
+  - JWT_SECRET=thisIsAvEryUnsecureSecret
 node_js:
   - "10"
 services:
