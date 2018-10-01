@@ -1,6 +1,8 @@
 language: node_js
 env:
-  - PGPASSWORD: ''
+  global:
+    - PGPASSWORD=''
+    - PGPORT=5432
 node_js:
   - "10"
 services:
