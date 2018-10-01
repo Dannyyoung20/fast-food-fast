@@ -1,4 +1,6 @@
 language: node_js
+env:
+  - PGPASSWORD: ''
 node_js:
   - "10"
 services:
@@ -7,6 +9,7 @@ addons:
   code_climate:
     repo_token:
       secure: 22c0a255f0cae72a9acf37099f905f5ef12653ada670e84f59699c224dc698f1
+  postgresql: "9.6"
 script:
   - npm run build
   - npm test
