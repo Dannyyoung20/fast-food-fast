@@ -1,60 +1,192 @@
+import chai from 'chai';
 import request from 'supertest';
-import app from '../server';
+import server from '../server';
+import {
+  NO_ORDER_MSG,
+  SUCCESSFUL_CREATED_MSG,
+  SUCCESSFUL_REQUEST_MSG,
+  FAILED_CREATED_MSG,
+  NOT_FOUND_MSG,
+} from '../helpers';
 
-describe('get api route', () => {
-  it('should exist /api/v1/orders route', (done) => {
-    request(app).get('/api/v1/orders')
-      .expect(200, done);
-  });
+const { expect } = chai;
+const app = request.agent(server);
+const loginRoute = '/api/v1/auth/login';
+const ordersRoute = '/api/v1/orders';
+const user = {
+  email: 'admin@gmail.com',
+  password: 'password',
+};
 
-  it('should exist /api/v1/orders/<orderID> route', (done) => {
-    request(app).get('/api/v1/orders/1')
-      .expect(200, done);
-  });
+const postData = {
+  menuID: 1,
+  address: 'somewhere',
+  qty: 3,
+};
 
-  it('should return 404 status code', (done) => {
-    request(app).post('/api/v1/orders/1')
-      .type('form')
-      .send()
-      .expect(404, done);
+const secondData = {
+  menuID: 1,
+  address: 'Africa',
+  qty: 10,
+};
+
+
+let slug;
+let token;
+
+before((done) => {
+  app
+    .post(loginRoute)
+    .send(user)
+    .end((err, response) => {
+      expect(200);
+      const jwtToken = response.body.token;
+      token = jwtToken;
+      done();
+    });
+});
+
+describe('GET api orders route', () => {
+  it('should return a 404 error when no order is found', (done) => {
+    app
+      .get(ordersRoute)
+      .set('token', token)
+      .end((err, response) => {
+        expect(404);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(NO_ORDER_MSG);
+        done();
+      });
   });
 });
 
-describe('post api route', () => {
-  it('should exist /api/v1/orders route', (done) => {
-    request(app).post('/api/v1/orders')
-      .type('form')
-      .send({ name: 'jdoajd' })
-      .expect(201, done);
+describe('POST api orders route', () => {
+  before((done) => {
+    app
+      .post(ordersRoute)
+      .set('token', token)
+      .send(postData)
+      .end((err, response) => {
+        const dbSlug = response.body.order.slug;
+        slug = dbSlug;
+        done();
+      });
+  });
+
+  it('should return a list of all available orders', (done) => {
+    app
+      .get(ordersRoute)
+      .set('token', token)
+      .end((err, response) => {
+        expect(200);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('orders');
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(SUCCESSFUL_REQUEST_MSG);
+        done();
+      });
+  });
+
+  it('should return a 200 successfully created', (done) => {
+    app
+      .post(ordersRoute)
+      .set('token', token)
+      .send(secondData)
+      .end((err, response) => {
+        expect(201);
+        expect(response.body.message).to.equal(SUCCESSFUL_CREATED_MSG);
+        expect(response.body).to.have.property('message');
+        expect(response.body).to.have.property('order');
+        done();
+      });
+  });
+
+  it('should return 400 Bad Request error when all required data aren\'t passed', (done) => {
+    app
+      .post(ordersRoute)
+      .set('token', token)
+      .send({ menuID: 1, address: 'jdadhaah' })
+      .end((err, response) => {
+        expect(400);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(FAILED_CREATED_MSG);
+        done();
+      });
   });
 });
 
-describe('delte api route', () => {
-  it('should exist /api/v1/orders route', (done) => {
-    request(app).delete('/api/v1/orders/1')
-      .type('form')
-      .send({ name: 'jdoajd' })
-      .expect(200, done);
+describe('GET specific order api route', () => {
+  it('should return 200 when getting a specific existing order', (done) => {
+    app
+      .get(`${ordersRoute}/${slug}`)
+      .set('token', token)
+      .end((err, response) => {
+        expect(200);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message');
+        expect(response.body).to.have.property('order');
+        expect(response.body.message).to.equal(SUCCESSFUL_REQUEST_MSG);
+        done();
+      });
   });
 
-  it('should return 404 status code', (done) => {
-    request(app).post('/api/v1/orders/1')
-      .type('form')
-      .send()
-      .expect(404, done);
+  it('should return 404 when sending invalid slug id', (done) => {
+    app
+      .get(`${ordersRoute}/slug`)
+      .set('token', token)
+      .end((err, response) => {
+        expect(404);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(NOT_FOUND_MSG);
+        done();
+      });
   });
 });
 
-describe('put api route', () => {
-  it('should exist /api/v1/orders route', (done) => {
-    request(app).put('/api/v1/orders')
-      .expect(404, done);
+describe('PUT orders api route', () => {
+  it('should return 202 after updating the status of an order', (done) => {
+    app
+      .put(`${ordersRoute}/${slug}`)
+      .set('token', token)
+      .send({ status: 'delivering' })
+      .end((err, response) => {
+        expect(202);
+        expect(response.body).to.have.property('order');
+        expect(response.body).to.have.property('message');
+        expect(response.body).to.be.an('object');
+        expect(response.body.message).to.equal(SUCCESSFUL_REQUEST_MSG);
+        done();
+      });
   });
 
-  it('should return 404 status code', (done) => {
-    request(app).post('/api/v1/orders/1')
-      .type('form')
-      .send()
-      .expect(404, done);
+  it('should 404 when using an invalid slug id', (done) => {
+    app
+      .put(`${ordersRoute}/invalid`)
+      .set('token', token)
+      .send({ status: 'delivering' })
+      .end((err, response) => {
+        expect(404);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(NOT_FOUND_MSG);
+        done();
+      });
+  });
+});
+
+describe('DELETE orders api route', () => {
+  it('should return 200 after successfully deleting an order', (done) => {
+    app
+      .delete(`${ordersRoute}/${slug}`)
+      .set('token', token)
+      .end((err, response) => {
+        expect(200);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(SUCCESSFUL_REQUEST_MSG);
+        expect(response.body).to.be.an('object');
+        done();
+      });
   });
 });

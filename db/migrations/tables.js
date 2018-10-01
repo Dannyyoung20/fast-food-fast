@@ -1,3 +1,5 @@
+import { hashPassword } from '../../helpers';
+
 // User Table Schema
 const userSchema = `
   CREATE TABLE IF NOT EXISTS users(
@@ -40,10 +42,42 @@ const orderSchema = `
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
 `;
+
+// Create admin query
+const hash = hashPassword('password');
+const createAdmin = `
+  INSERT INTO users(
+    email, 
+    password,
+    slug,
+    role
+    ) VALUES (
+      'admin@gmail.com',
+      '${hash}',
+      'jd90e9wr8jc4',
+      1
+    );
+`;
+
+// Create a menu item
+const createMenu = `
+  INSERT INTO menu(
+    name,
+    price,
+    img
+  ) VALUES (
+    'pizza',
+     3000,
+     'jdkajdakj'
+  )
+`;
+
 const migration = `
 ${userSchema}
 ${menuSchema}
 ${orderSchema}
+${createAdmin}
+${createMenu}
 `;
 
 export default migration;
