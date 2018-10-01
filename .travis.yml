@@ -1,7 +1,7 @@
 language: node_js
 env:
   - DB='postgres://postgres@localhost:5432/fast_food'
-  - JWT_SECRET=thisIsAvEryUnsecureSecret
+  - JWT_SECRET='thisIsAvEryUnsecureSecret'
 node_js:
   - "10"
 services:
@@ -21,4 +21,5 @@ after_script:
   - codeclimate-test-reporter < ./coverage/lcov.info
 before_script:
   - psql -c 'create database fast_food;' -U postgres
+  - export JWT_SECRET=thisIsAvEryUnsecureSecret
 #  - psql -c "update USER foo WITH PASSWORD 'bar';" -U postgres
