@@ -14,7 +14,7 @@ script:
   - npm run build
   - npm test
   - npm run coverage
-before_install: npm install mocha chai supertest babel-cli babel-preset-env rimraf codeclimate-test-reporter coveralls istanbul -g
+before_install: npm install mocha chai supertest babel-cli babel-preset-env codeclimate-test-reporter coveralls istanbul -g
 after_script:
   - ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info
   - codeclimate-test-reporter < ./coverage/lcov.info
