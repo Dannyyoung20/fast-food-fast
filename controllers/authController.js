@@ -39,30 +39,6 @@ class Authentication {
     return hashPassword(password);
   }
 
-  // @desc Gets a DB_PASSWORD
-  // @params password User password
-  // @return Boolean | DB_PASSWORD
-  static GET_PASSWORD(email, cb) {
-    const query = `SELECT password FROM users WHERE email = '${email}' `;
-    pool.query(query, (err, result) => {
-      if (result.rowCount === 0) return false;
-      cb(result.rows[0].password);
-      return false;
-    });
-  }
-
-  // @params email User email, password User password, cb Callback
-  // @desc Verify password with bcrypt
-  // @return Boolean
-  static VERIFY_PASSWORD(email, password, cb) {
-    Authentication.GET_PASSWORD(email, (dbPassword) => {
-      if (!dbPassword) return false;
-      const isPassword = verifyPassword(password, dbPassword);
-      cb(isPassword);
-      return false;
-    });
-  }
-
   // @params req REQUEST, res RESPONSE
   // @return token
   // @desc Sign up a user
@@ -98,11 +74,6 @@ class Authentication {
   static login(req, res) {
     // Body items
     const { email, password } = req.body;
-    // Verify user password
-    Authentication.VERIFY_PASSWORD(email, password, (isPassword) => {
-      if (!isPassword) return res.status(400).json({ message: INVALID_EMAIL_PASSWORD_MSG });
-      return true;
-    });
 
     const query = `SELECT * FROM users WHERE email = '${email}'`;
     pool.query(query)
@@ -111,6 +82,8 @@ class Authentication {
           return res.status(400)
             .json({ message: INVALID_EMAIL_MSG, token: null });
         }
+        const isPassword = verifyPassword(password, result.rows[0].password);
+        if(!isPassword) return res.status(400).json({ message: INVALID_EMAIL_PASSWORD_MSG });
         const user = {
           email: result.rows[0].email,
           id: result.rows[0].id,
@@ -122,7 +95,7 @@ class Authentication {
         return res.status(200).json({ message: LOGIN_SUCCESS_MSG, token });
       })
       .catch((e) => {
-        ErrorHandler(res, e, SERVER_ERROR_MSG, 500);
+        ErrorHandler(res, e, SERVER_ERROR_MSG);
       });
     return false;
   }

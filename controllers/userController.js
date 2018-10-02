@@ -1,4 +1,5 @@
 import pool from '../db/connection';
+import Authorization from '../middlewares';
 import {
   ErrorHandler,
   NO_USER_MSG,
@@ -9,22 +10,11 @@ import {
 pool.connect();
 
 class User {
-  static getUserID(res, slug) {
-    const query = `SELECT id FROM users where slug = ${slug}`;
-    pool.query(query)
-      .then((result) => {
-        User.handleResponse(res, result);
-      })
-      .catch((e) => {
-        ErrorHandler(res, e, NO_USER_MSG, 404);
-      });
-  }
-
   static myOrderHistory(req, res) {
-    const { userID } = req.params;
-    const id = User.getUserID(userID);
+    const token = req.headers['x-access'] || req.headers.token;
+    const decoded = Authorization.JWT_VERIFY(token);
+    const { id } = decoded.user;
     const query = `SELECT * FROM orders WHERE id = ${id}`;
-
     pool.query(query)
       .then((result) => {
         if (result.rowCount === 0) return res.status(200).json({ message: SUCCESSFUL_REQUEST_MSG, history: 'No order history' });
