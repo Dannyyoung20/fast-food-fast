@@ -15,7 +15,6 @@ class User {
     const decoded = Authorization.JWT_VERIFY(token);
     const { id } = decoded.user;
     const query = `SELECT * FROM orders WHERE id = ${id}`;
-
     pool.query(query)
       .then((result) => {
         if (result.rowCount === 0) return res.status(200).json({ message: SUCCESSFUL_REQUEST_MSG, history: 'No order history' });
