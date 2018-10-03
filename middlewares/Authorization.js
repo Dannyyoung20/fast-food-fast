@@ -1,6 +1,5 @@
-import { tokenVerify } from '../helpers';
+import { tokenVerify, AUTH_MESSAGE } from '../helpers';
 
-const AUTH_MESSAGE = 'UnAuthorized Acess';
 
 class Authorization {
   // @desc Verifies a token

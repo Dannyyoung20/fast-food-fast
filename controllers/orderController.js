@@ -9,6 +9,8 @@ import generator, {
   tokenVerify,
 } from '../helpers';
 
+const ACCEPTED_STATUS = ['processing', 'cancelled', 'completed'];
+
 class Order {
   static showAllOrders(req, res) {
     const query = 'SELECT * FROM orders';
@@ -47,6 +49,7 @@ class Order {
       .catch((e) => {
         ErrorHandler(res, e, NOT_FOUND_MSG, 404);
       });
+    return false;
   }
 
   static deleteSpecificOrder(req, res) {
