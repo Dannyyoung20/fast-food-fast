@@ -1,6 +1,6 @@
 language: node_js
 env:
-  - DB='postgres://postgres@localhost:5432/fast_food'
+  - DATABASE_URL='postgres://postgres@localhost:5432/fast_food'
 node_js:
   - "10"
 services:

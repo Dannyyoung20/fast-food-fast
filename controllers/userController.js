@@ -4,6 +4,7 @@ import {
   ErrorHandler,
   NO_USER_MSG,
   SUCCESSFUL_REQUEST_MSG,
+  UNAUTHORIZED_MSG,
 } from '../helpers';
 
 // Connecting to DB

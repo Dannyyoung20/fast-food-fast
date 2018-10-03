@@ -20,3 +20,5 @@ export const LOGIN_SUCCESS_MSG = 'Successfully logged in';
 export const INVALID_EMAIL_MSG = 'Invalid email';
 export const INVALID_EMAIL_PASSWORD_MSG = 'Invalid email or password';
 export const SERVER_ERROR_MSG = 'Internal Server Error';
+export const UNAUTHORIZED_MSG = 'Unauthorized Access';
+export const AUTH_MESSAGE = 'UnAuthorized Acess';

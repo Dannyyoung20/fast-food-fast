@@ -36,7 +36,7 @@ const orderSchema = `
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     qty INTEGER NOT NULL,
     delivery_address TEXT,
-    status VARCHAR(20) DEFAULT 'pending',
+    status VARCHAR(20) DEFAULT 'now',
     slug VARCHAR(30) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()

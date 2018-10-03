@@ -7,11 +7,13 @@ import {
   SUCCESSFUL_REQUEST_MSG,
   FAILED_CREATED_MSG,
   NOT_FOUND_MSG,
+  AUTH_MESSAGE,
 } from '../helpers';
 
 const { expect } = chai;
 const app = request.agent(server);
 const loginRoute = '/api/v1/auth/login';
+const signupRoute = '/api/v1/auth/signup';
 const ordersRoute = '/api/v1/orders';
 const user = {
   email: 'admin@gmail.com',
@@ -33,6 +35,7 @@ const secondData = {
 
 let slug;
 let token;
+let rToken; // r -> regular
 
 before((done) => {
   app
@@ -186,6 +189,56 @@ describe('DELETE orders api route', () => {
         expect(response.body).to.have.property('message');
         expect(response.body.message).to.equal(SUCCESSFUL_REQUEST_MSG);
         expect(response.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('AUTHORIZATION TEST', () => {
+  before((done) => {
+    app
+      .post(signupRoute)
+      .send({ email: 'test@gmail.com', password: 'password', address: 'somewhere in the world' })
+      .end((err, response) => {
+        const jwtToken = response.body.token;
+        rToken = jwtToken;
+        done();
+      });
+  });
+
+  it('should return 401 with Auth message when trying to access orders route with regular token', (done) => {
+    app
+      .get(ordersRoute)
+      .set('token', rToken)
+      .end((err, response) => {
+        expect(401);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(AUTH_MESSAGE);
+        done();
+      });
+  });
+
+  it('should return 401 error with Auth message when trying to update orders route with regualar token', (done) => {
+    app
+      .put(`${ordersRoute}/${slug}`)
+      .set('token', rToken)
+      .send({ status: 'processing' })
+      .end((err, response) => {
+        expect(401);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(AUTH_MESSAGE);
+        done();
+      });
+  });
+
+  it('should return 401 error with Auth message when trying to get a specific order', (done) => {
+    app
+      .get(`${ordersRoute}/${slug}`)
+      .set('token', rToken)
+      .end((err, response) => {
+        expect(401);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(AUTH_MESSAGE);
         done();
       });
   });

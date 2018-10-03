@@ -31,7 +31,7 @@ class Menu {
   // @desc Handle our query response
   // @return item
   static handleResponse(res, result, status = 200) {
-    return res.status(status).json({ message: 'Successfully created menu item', item: result });
+    return res.status(status).json({ message: 'Successfully created menu item', menu: result });
   }
 
   // @params req REQUEST, res RESPONSE
