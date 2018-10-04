@@ -1,6 +1,6 @@
 import pool from '../db/connection';
 import {
-  ErrorHandler,
+  errorHandler,
   UNIQUE_VIOLATION_MSG,
 } from '../helpers';
 
@@ -24,7 +24,7 @@ class Menu {
         Menu.handleResponse(res, result.rows[0], SUCCESSFUL_MENU_MSG, 201);
       })
       .catch((e) => {
-        ErrorHandler(res, e, UNIQUE_VIOLATION_MSG);
+        errorHandler(res, e, UNIQUE_VIOLATION_MSG);
       });
     return false;
   }
@@ -43,7 +43,7 @@ class Menu {
     const query = 'SELECT * FROM menu';
     pool.query(query)
       .then((result) => { Menu.handleResponse(res, result.rows, SUCCESSFUL_MENU_MSG); })
-      .catch((e) => { ErrorHandler(res, e, 'Request was not processed. Try again later'); });
+      .catch((e) => { errorHandler(res, e, 'Request was not processed. Try again later'); });
   }
 }
 

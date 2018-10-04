@@ -5,7 +5,7 @@ export { default as hashPassword } from './hashPassword';
 export { default as tokenGenerate } from './generateToken';
 export { default as tokenVerify } from './verifyToken';
 export { default as verifyPassword } from './verifyPassword';
-export { default as ErrorHandler } from './errorHandler';
+export { default as errorHandler } from './errorHandler';
 export { default as handleResponse } from '.';
 export { default as checkIsEmail } from './emailValidation';
 
