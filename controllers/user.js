@@ -1,6 +1,6 @@
 import pool from '../db/connection';
 import {
-  ErrorHandler,
+  errorHandler,
   NO_USER_MSG,
   SUCCESSFUL_REQUEST_MSG,
   tokenVerify,
@@ -21,7 +21,7 @@ class User {
         return res.status(200).json({ message: SUCCESSFUL_REQUEST_MSG, history: result.rows });
       })
       .catch((e) => {
-        ErrorHandler(res, e, 'Unknown Error');
+        errorHandler(res, e, 'Unknown Error');
       });
   }
 

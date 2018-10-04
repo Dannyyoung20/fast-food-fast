@@ -1,6 +1,6 @@
 import pool from '../db/connection';
 import generator, {
-  ErrorHandler,
+  errorHandler,
   NO_ORDER_MSG,
   NOT_FOUND_MSG,
   SUCCESSFUL_REQUEST_MSG,
@@ -21,7 +21,7 @@ class Order {
         return res.status(200).json({ message: SUCCESSFUL_REQUEST_MSG, orders: result.rows });
       })
       .catch((e) => {
-        ErrorHandler(res, e, NOT_FOUND_MSG, 404);
+        errorHandler(res, e, NOT_FOUND_MSG, 404);
       });
   }
 
@@ -34,7 +34,7 @@ class Order {
         return res.status(200).json({ message: SUCCESSFUL_REQUEST_MSG, order: result.rows });
       })
       .catch((e) => {
-        ErrorHandler(res, e, NOT_FOUND_MSG, 404);
+        errorHandler(res, e, NOT_FOUND_MSG, 404);
       });
   }
 
@@ -52,7 +52,7 @@ class Order {
         return res.status(202).json({ message: SUCCESSFUL_REQUEST_MSG, order: result.rows });
       })
       .catch((e) => {
-        ErrorHandler(res, e, NOT_FOUND_MSG, 404);
+        errorHandler(res, e, NOT_FOUND_MSG, 404);
       });
     return false;
   }
@@ -65,7 +65,7 @@ class Order {
         res.status(200).json({ message: SUCCESSFUL_REQUEST_MSG });
       })
       .catch((e) => {
-        ErrorHandler(res, e, NOT_FOUND_MSG, 404);
+        errorHandler(res, e, NOT_FOUND_MSG, 404);
       });
   }
 
@@ -100,7 +100,7 @@ class Order {
         res.status(201).json({ message: SUCCESSFUL_CREATED_MSG, order: result.rows[0] });
       })
       .catch((e) => {
-        ErrorHandler(res, e, FAILED_CREATED_MSG, 400);
+        errorHandler(res, e, FAILED_CREATED_MSG, 400);
       });
   }
 }
