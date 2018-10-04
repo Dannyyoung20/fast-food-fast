@@ -2,7 +2,7 @@ import generator, {
   hashPassword,
   tokenGenerate,
   verifyPassword,
-  ErrorHandler,
+  errorHandler,
   UNIQUE_VIOLATION_MSG,
   LOGIN_SUCCESS_MSG,
   INVALID_EMAIL_PASSWORD_MSG,
@@ -63,7 +63,7 @@ class Authentication {
         return res.status(201).json({ message: SUCCESSFUL_CREATED_MSG, token });
       })
       .catch((e) => {
-        ErrorHandler(res, e, UNIQUE_VIOLATION_MSG);
+        errorHandler(res, e, UNIQUE_VIOLATION_MSG);
       });
   }
 
@@ -105,7 +105,7 @@ class Authentication {
         return res.status(200).json({ message: LOGIN_SUCCESS_MSG, token });
       })
       .catch((e) => {
-        ErrorHandler(res, e, SERVER_ERROR_MSG);
+        errorHandler(res, e, SERVER_ERROR_MSG);
       });
   }
 }
