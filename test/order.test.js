@@ -8,6 +8,8 @@ import {
   FAILED_CREATED_MSG,
   NOT_FOUND_MSG,
   AUTH_MESSAGE,
+  TOKEN_NOT_PASSED_MSG,
+  TOKEN_INVALID_MSG,
 } from '../helpers';
 
 const { expect } = chai;
@@ -21,13 +23,13 @@ const user = {
 };
 
 const postData = {
-  menuID: 1,
+  mealName: 'pizza',
   address: 'somewhere',
   qty: 3,
 };
 
 const secondData = {
-  menuID: 1,
+  mealName: 'pizza',
   address: 'Africa',
   qty: 10,
 };
@@ -109,11 +111,36 @@ describe('POST api orders route', () => {
     app
       .post(ordersRoute)
       .set('token', token)
-      .send({ menuID: 1, address: 'jdadhaah' })
+      .send({ mealName: 'pizza', address: 'somewhere in the world' })
       .end((err, response) => {
         expect(400);
         expect(response.body).to.have.property('message');
         expect(response.body.message).to.equal(FAILED_CREATED_MSG);
+        done();
+      });
+  });
+
+  it('should return 400 Bad Request error when invalid token is passed', (done) => {
+    app
+      .post(ordersRoute)
+      .set('token', 'fakeToken')
+      .send(secondData)
+      .end((err, response) => {
+        expect(400);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(TOKEN_INVALID_MSG);
+        done();
+      });
+  });
+
+  it('should return 400 Bad Request error when no token is passed', (done) => {
+    app
+      .post(ordersRoute)
+      .send({ mealName: 'pizza', address: 'jdadhaah' })
+      .end((err, response) => {
+        expect(400);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(TOKEN_NOT_PASSED_MSG);
         done();
       });
   });
@@ -153,7 +180,7 @@ describe('PUT orders api route', () => {
     app
       .put(`${ordersRoute}/${slug}`)
       .set('token', token)
-      .send({ status: 'delivering' })
+      .send({ status: 'processing' })
       .end((err, response) => {
         expect(202);
         expect(response.body).to.have.property('order');
@@ -168,7 +195,7 @@ describe('PUT orders api route', () => {
     app
       .put(`${ordersRoute}/invalid`)
       .set('token', token)
-      .send({ status: 'delivering' })
+      .send({ status: 'processing' })
       .end((err, response) => {
         expect(404);
         expect(response.body).to.be.an('object');
@@ -177,7 +204,22 @@ describe('PUT orders api route', () => {
         done();
       });
   });
+
+  it('should 400 when sending an invalid staus', (done) => {
+    app
+      .put(`${ordersRoute}/invalid`)
+      .set('token', token)
+      .send({ status: 'delivering' })
+      .end((err, response) => {
+        expect(400);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal('Invalid Status Provided');
+        done();
+      });
+  });
 });
+
 
 describe('DELETE orders api route', () => {
   it('should return 200 after successfully deleting an order', (done) => {

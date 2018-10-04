@@ -1,10 +1,9 @@
 import pool from '../db/connection';
-import Authorization from '../middlewares';
 import {
   ErrorHandler,
   NO_USER_MSG,
   SUCCESSFUL_REQUEST_MSG,
-  UNAUTHORIZED_MSG,
+  tokenVerify,
 } from '../helpers';
 
 // Connecting to DB
@@ -13,7 +12,7 @@ pool.connect();
 class User {
   static myOrderHistory(req, res) {
     const token = req.headers['x-access'] || req.headers.token;
-    const decoded = Authorization.JWT_VERIFY(token);
+    const decoded = tokenVerify(token);
     const { id } = decoded.user;
     const query = `SELECT * FROM orders WHERE id = ${id}`;
     pool.query(query)

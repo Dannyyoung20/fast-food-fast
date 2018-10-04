@@ -14,7 +14,7 @@ const user = {
 };
 
 const secondData = {
-  menuID: 1,
+  mealName: 'pizza',
   address: 'Africa',
   qty: 10,
 };
