@@ -1,4 +1,4 @@
-export { default } from './authController';
-export { default as Menu } from './menuController';
-export { default as User } from './userController';
-export { default as Order } from './orderController';
+export { default } from './auth';
+export { default as Menu } from './menu';
+export { default as User } from './user';
+export { default as Order } from './order';

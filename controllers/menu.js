@@ -7,6 +7,8 @@ import {
 // Connecting to DB
 pool.connect();
 
+const SUCCESSFUL_MENU_MSG = 'Successfully created menu item';
+
 
 // Menu controller class
 class Menu {
@@ -19,7 +21,7 @@ class Menu {
     const query = 'INSERT INTO menu(name, price, img) VALUES ($1, $2, $3) RETURNING *';
     pool.query(query, [name, price, imageUrl])
       .then((result) => {
-        Menu.handleResponse(res, result.rows[0], 201);
+        Menu.handleResponse(res, result.rows[0], SUCCESSFUL_MENU_MSG, 201);
       })
       .catch((e) => {
         ErrorHandler(res, e, UNIQUE_VIOLATION_MSG);
@@ -30,8 +32,8 @@ class Menu {
   // @params res RESPONSE, result DB_ROW, status Status Code
   // @desc Handle our query response
   // @return item
-  static handleResponse(res, result, status = 200) {
-    return res.status(status).json({ message: 'Successfully created menu item', item: result });
+  static handleResponse(res, result, message, status = 200) {
+    return res.status(status).json({ message, menu: result });
   }
 
   // @params req REQUEST, res RESPONSE
@@ -40,7 +42,7 @@ class Menu {
   static get(req, res) {
     const query = 'SELECT * FROM menu';
     pool.query(query)
-      .then((result) => { Menu.handleResponse(res, result.rows); })
+      .then((result) => { Menu.handleResponse(res, result.rows, SUCCESSFUL_MENU_MSG); })
       .catch((e) => { ErrorHandler(res, e, 'Request was not processed. Try again later'); });
   }
 }
