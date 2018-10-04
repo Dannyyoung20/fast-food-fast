@@ -5,10 +5,14 @@ import generator, {
   ErrorHandler,
   UNIQUE_VIOLATION_MSG,
   LOGIN_SUCCESS_MSG,
-  INVALID_EMAIL_MSG,
   INVALID_EMAIL_PASSWORD_MSG,
   SERVER_ERROR_MSG,
   SUCCESSFUL_CREATED_MSG,
+  checkIsEmail,
+  INVALID_EMAIL_MSG,
+  INVALID_ADDRESS_MSG,
+  EMAIL_PASSWORD_REQUIRED,
+  EMAIL_PASSWORD_ADDRESS_REQUIRED,
 } from '../helpers';
 import pool from '../db/connection';
 
@@ -23,7 +27,25 @@ class Authentication {
   // @desc Sign up a user
   static signup(req, res) {
     const { email, password, address } = req.body;
-    // TODO: Validation done on frontend
+
+    // Validate email and password if been sent
+    if (!email || !password || !address) {
+      res.status(400).json({ message: EMAIL_PASSWORD_ADDRESS_REQUIRED });
+      return;
+    }
+
+    // Validate Email
+    const validEmail = checkIsEmail(email);
+    if (!validEmail) {
+      res.status(400).json({ message: INVALID_EMAIL_MSG });
+      return;
+    }
+    // Validate Address
+    if (address.length < 8) {
+      res.status(400).json({ message: INVALID_ADDRESS_MSG });
+      return;
+    }
+
     const hashed = hashPassword(password);
 
     // Generate random number for our slug
@@ -36,8 +58,6 @@ class Authentication {
         const user = {
           slug,
           id: result.rows[0].id,
-          email,
-          isAdmin: result.rows[0].role,
         };
         const token = tokenGenerate(user);
         return res.status(201).json({ message: SUCCESSFUL_CREATED_MSG, token });
@@ -54,20 +74,31 @@ class Authentication {
     // Body items
     const { email, password } = req.body;
 
+    // Validate email and password if been sent
+    if (!email || !password) {
+      res.status(400).json({ message: EMAIL_PASSWORD_REQUIRED });
+      return;
+    }
+
+    // Validate Email
+    const validEmail = checkIsEmail(email);
+    if (!validEmail) {
+      res.status(400).json({ message: INVALID_EMAIL_MSG });
+      return;
+    }
+
     const query = `SELECT * FROM users WHERE email = '${email}'`;
     pool.query(query)
       .then((result) => {
         if (result.rowCount === 0) {
           return res.status(400)
-            .json({ message: INVALID_EMAIL_MSG, token: null });
+            .json({ message: INVALID_EMAIL_PASSWORD_MSG, token: null });
         }
-        const isPassword = verifyPassword(password, result.rows[0].password);
-        if (!isPassword) return res.status(400).json({ message: INVALID_EMAIL_PASSWORD_MSG });
+        const isPasswordValid = verifyPassword(password, result.rows[0].password);
+        if (!isPasswordValid) return res.status(400).json({ message: INVALID_EMAIL_PASSWORD_MSG });
         const user = {
-          email: result.rows[0].email,
           id: result.rows[0].id,
           slug: result.rows[0].slug,
-          isAdmin: result.rows[0].role,
         };
         // Generate a token for our user
         const token = tokenGenerate(user);
@@ -76,7 +107,6 @@ class Authentication {
       .catch((e) => {
         ErrorHandler(res, e, SERVER_ERROR_MSG);
       });
-    return false;
   }
 }
 

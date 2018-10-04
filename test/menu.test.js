@@ -1,6 +1,7 @@
 import chai from 'chai';
 import request from 'supertest';
 import server from '../server';
+import { TOKEN_NOT_PASSED_MSG, TOKEN_INVALID_MSG } from '../helpers';
 
 
 const { expect } = chai;
@@ -57,6 +58,31 @@ describe('MENU TEST', () => {
         expect(response.body).to.have.property('message');
         expect(response.body).to.have.property('menu');
         expect(response.body.message).to.equal('Successfully created menu item');
+        done();
+      });
+  });
+
+  it('should return 400 Bad Request error when no token is passed', (done) => {
+    app
+      .post(menuRoute)
+      .send(postData)
+      .end((err, response) => {
+        expect(400);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(TOKEN_NOT_PASSED_MSG);
+        done();
+      });
+  });
+
+  it('should return 400 Bad Request error when invalid token is passed', (done) => {
+    app
+      .post(menuRoute)
+      .set('token', 'fakeToken')
+      .send(postData)
+      .end((err, response) => {
+        expect(400);
+        expect(response.body).to.have.property('message');
+        expect(response.body.message).to.equal(TOKEN_INVALID_MSG);
         done();
       });
   });

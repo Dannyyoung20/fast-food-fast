@@ -4,12 +4,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-import {
-  Order,
-  Menu,
-  User,
-  Auth,
-} from './routes';
+import router from './routes';
 
 dotenv.config();
 
@@ -29,11 +24,8 @@ app.use(cors());
 
 
 // Setting up handler for a specific route
-app.use('/api/v1/orders', Order); // Orders Route
-app.use('/api/v1/auth', Auth); // Auth Route
-app.use('/api/v1/menu', Menu); // Menu Route
-app.use('/api/v1/users', User); // User Route
-app.get('/', (req, res) => { res.status(200).json({ message: 'Welcome to Fast Food ' }); });
+app.use(router);
+
 app.listen(PORT, () => {
   console.log(`Running application on port ${PORT}`);
 });
