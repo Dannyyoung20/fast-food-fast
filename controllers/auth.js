@@ -3,20 +3,11 @@ import generator, {
   tokenGenerate,
   verifyPassword,
   errorHandler,
-<<<<<<< HEAD
   EMAIL_EXIST_MSG,
-=======
-  UNIQUE_VIOLATION_MSG,
->>>>>>> bae2cbcf01560c9d4ee3301859da5342db3b0715
   LOGIN_SUCCESS_MSG,
   INVALID_EMAIL_PASSWORD_MSG,
   SERVER_ERROR_MSG,
   SUCCESSFUL_CREATED_MSG,
-  checkIsEmail,
-  INVALID_EMAIL_MSG,
-  INVALID_ADDRESS_MSG,
-  EMAIL_PASSWORD_REQUIRED,
-  EMAIL_PASSWORD_ADDRESS_REQUIRED,
 } from '../helpers';
 import pool from '../db/connection';
 
