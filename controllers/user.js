@@ -3,7 +3,6 @@ import {
   errorHandler,
   NO_USER_MSG,
   SUCCESSFUL_REQUEST_MSG,
-  tokenVerify,
 } from '../helpers';
 
 // Connecting to DB
@@ -11,11 +10,9 @@ pool.connect();
 
 class User {
   static myOrderHistory(req, res) {
-    const token = req.headers['x-access'] || req.headers.token;
-    const decoded = tokenVerify(token);
-    const { id } = decoded.user;
-    const query = `SELECT * FROM orders WHERE id = ${id}`;
-    pool.query(query)
+    const { id } = req.user;
+    const query = 'SELECT * FROM orders WHERE id = $1';
+    pool.query(query, [id])
       .then((result) => {
         if (result.rowCount === 0) return res.status(200).json({ message: SUCCESSFUL_REQUEST_MSG, history: 'No order history' });
         return res.status(200).json({ message: SUCCESSFUL_REQUEST_MSG, history: result.rows });

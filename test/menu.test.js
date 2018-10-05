@@ -7,7 +7,6 @@ import { TOKEN_NOT_PASSED_MSG, TOKEN_INVALID_MSG } from '../helpers';
 const { expect } = chai;
 const app = request.agent(server);
 const loginRoute = '/api/v1/auth/login';
-const signupRoute = '/api/v1/auth/signup';
 const menuRoute = '/api/v1/menu';
 const user = {
   email: 'admin@gmail.com',
@@ -16,8 +15,8 @@ const user = {
 
 const postData = {
   name: 'Hot dog',
-  price: 1000,
-  imageUrl: 'hdada',
+  price: '1000',
+  imageUrl: 'https://imageurl.png',
 };
 
 let slug;

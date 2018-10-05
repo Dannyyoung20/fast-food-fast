@@ -17,16 +17,22 @@ class Menu {
   // @return null
   static post(req, res) {
     const { imageUrl, name, price } = req.body;
+    const integerPrice = parseInt(price, 10);
+    // // Validate Email
+    // const validEmail = checkIsImage(imageUrl);
+    // if (!validEmail) {
+    //   res.status(400).json({ message: INVALID_IMAGE_URL_MSG });
+    //   return;
+    // }
 
     const query = 'INSERT INTO menu(name, price, img) VALUES ($1, $2, $3) RETURNING *';
-    pool.query(query, [name, price, imageUrl])
+    pool.query(query, [name.toLowerCase(), integerPrice, imageUrl])
       .then((result) => {
         Menu.handleResponse(res, result.rows[0], SUCCESSFUL_MENU_MSG, 201);
       })
       .catch((e) => {
         errorHandler(res, e, UNIQUE_VIOLATION_MSG);
       });
-    return false;
   }
 
   // @params res RESPONSE, result DB_ROW, status Status Code

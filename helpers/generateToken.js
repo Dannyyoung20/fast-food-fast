@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Expirtion time in milliseconds
-const EXPIRATION_TIME = 86000;
+// Expirtion time in Seconds
+const EXPIRATION_TIME = 86400;
 
 const { JWT_SECRET } = process.env;
 

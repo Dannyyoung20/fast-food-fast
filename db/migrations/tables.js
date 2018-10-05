@@ -54,7 +54,7 @@ const createAdmin = `
     ) VALUES (
       'admin@gmail.com',
       '${hash}',
-      'jd90e9wr8jc4',
+      'https://imageurl.png',
       1
     );
 `;

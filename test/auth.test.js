@@ -5,11 +5,11 @@ import {
   LOGIN_SUCCESS_MSG,
   INVALID_EMAIL_PASSWORD_MSG,
   SUCCESSFUL_CREATED_MSG,
-  UNIQUE_VIOLATION_MSG,
   INVALID_EMAIL_MSG,
   INVALID_ADDRESS_MSG,
   EMAIL_PASSWORD_REQUIRED,
   EMAIL_PASSWORD_ADDRESS_REQUIRED,
+  EMAIL_EXIST_MSG,
 } from '../helpers';
 
 const { expect } = chai;
@@ -90,7 +90,7 @@ describe('SIGNUP TEST', () => {
   it('should return 201 after creating a new user', (done) => {
     app
       .post(`${authRoute}/signup`)
-      .send({ email: 'new@gmail.com', password: 'password', address: 'Around Africa' })
+      .send({ email: 'new@gmail.com', password: 'password', address: 'Around Africa djkadakjda' })
       .end((err, response) => {
         expect(201);
         expect(response.body).to.be.an('object');
@@ -104,12 +104,12 @@ describe('SIGNUP TEST', () => {
   it('should return 400 after sending duplicate email address', (done) => {
     app
       .post(`${authRoute}/signup`)
-      .send({ email: 'admin@gmail.com', password: 'password', address: 'Around Africa' })
+      .send({ email: 'admin@gmail.com', password: 'password', address: 'Around Africa djkadakjda' })
       .end((err, response) => {
         expect(400);
         expect(response.body).to.be.an('object');
         expect(response.body).to.have.property('message');
-        expect(response.body.message).to.equal(UNIQUE_VIOLATION_MSG);
+        expect(response.body.message).to.equal(EMAIL_EXIST_MSG);
         done();
       });
   });
@@ -117,7 +117,7 @@ describe('SIGNUP TEST', () => {
   it('should return 400 after sending invalid email address', (done) => {
     app
       .post(`${authRoute}/signup`)
-      .send({ email: 'admingmail.com', password: 'password', address: 'Around Africa' })
+      .send({ email: 'admingmail.com', password: 'password', address: 'Around Africa djkadakjda' })
       .end((err, response) => {
         expect(400);
         expect(response.body).to.be.an('object');
@@ -130,7 +130,7 @@ describe('SIGNUP TEST', () => {
   it('should return 400 after sending invalid  address', (done) => {
     app
       .post(`${authRoute}/signup`)
-      .send({ email: 'admin@gmail.com', password: 'password', address: 'Around' })
+      .send({ email: 'admin4@gmail.com', password: 'password', address: 'd' })
       .end((err, response) => {
         expect(400);
         expect(response.body).to.be.an('object');
