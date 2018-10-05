@@ -30,7 +30,7 @@ const postData = {
 
 const secondData = {
   mealName: 'pizza',
-  address: 'Africa',
+  address: 'Around Africa djkadakjda',
   qty: 10,
 };
 
@@ -73,7 +73,7 @@ describe('POST api orders route', () => {
       .set('token', token)
       .send(postData)
       .end((err, response) => {
-        const dbSlug = response.body.order.slug;
+        const dbSlug = response.body.order.item.slug;
         slug = dbSlug;
         done();
       });
