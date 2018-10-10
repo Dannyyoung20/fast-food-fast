@@ -20,15 +20,14 @@ class Validations {
   static post(req, res, next) {
     const { mealName, qty, address } = req.body;
     const cleanedMealName = mealName.trim();
-    const cleanedQty = qty.trim();
     const cleanedAddress = address.trim();
 
-    if (!cleanedAddress || !cleanedMealName || !cleanedQty) {
+    if (!cleanedAddress || !cleanedMealName || !qty) {
       return res.status(400)
         .json({ message: 'Meal name, Quantity,Address are Required' });
     }
     if (typeof cleanedAddress !== 'string') return res.status(400).json({ message: 'Invalid Address' });
-    if (typeof cleanedQty !== 'number') return res.status(400).json({ message: 'Invalid Quantity' });
+    if (typeof qty !== 'number') return res.status(400).json({ message: 'Invalid Quantity' });
     if (typeof cleanedMealName !== 'string') return res.status(400).json({ message: 'Invalid Meal Name' });
 
     return next();
