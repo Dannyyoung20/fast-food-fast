@@ -19,10 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Setting up the morgan middleware
 app.use(morgan('dev'));
-
+// Setting up cors
 app.use(cors());
-
-
 // Setting up handler for a specific route
 app.use(router);
 

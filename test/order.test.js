@@ -30,7 +30,7 @@ const postData = {
 
 const secondData = {
   mealName: 'pizza',
-  address: 'Africa',
+  address: 'Around Africa djkadakjda',
   qty: 10,
 };
 
@@ -73,7 +73,7 @@ describe('POST api orders route', () => {
       .set('token', token)
       .send(postData)
       .end((err, response) => {
-        const dbSlug = response.body.order.slug;
+        const dbSlug = response.body.order.item.slug;
         slug = dbSlug;
         done();
       });
@@ -115,7 +115,7 @@ describe('POST api orders route', () => {
       .end((err, response) => {
         expect(400);
         expect(response.body).to.have.property('message');
-        expect(response.body.message).to.equal(FAILED_CREATED_MSG);
+        expect(response.body.message).to.equal('Meal name, Quantity,Address are Required');
         done();
       });
   });
