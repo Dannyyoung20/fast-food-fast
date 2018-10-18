@@ -1,7 +1,7 @@
 import express from 'express';
 import { Authentication } from '../middlewares';
 import { Order } from '../controllers';
-import Validations, { OrderValidation } from '../validations';
+import { OrderValidation } from '../validations';
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.get('/', Authentication.authenticated, Authentication.isAdmin, Order.show
 // @route POST /api/v1/orders
 // @desc Saves the various orders that are sent
 // @access Public
-router.post('/', Authentication.authenticated, Order.placeOrder);
+router.post('/', Authentication.authenticated, OrderValidation.post, Order.placeOrder);
 
 // @route GET /api/v1/orders/orderID
 // @desc Displays a specific order

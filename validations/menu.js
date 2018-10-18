@@ -30,7 +30,7 @@ class Validations {
       return res.status(400).json({ message: 'Invalid image url given' });
     }
     // Reference - https://regexr.com/3g1v7
-    if (!/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g.test(trimedImageUrl)) {
+    if (!/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|svg|jpeg)/g.test(trimedImageUrl)) {
       return res.status(400).json({ message: 'Invalid image url. Check extension to be sure its png or jpg or gif' });
     }
     return next();

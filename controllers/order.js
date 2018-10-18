@@ -10,7 +10,14 @@ import generator, {
 
 class Order {
   static showAllOrders(req, res) {
-    const query = 'SELECT * FROM orders';
+    const query = `
+      SELECT 
+      orders.id, orders.qty, orders.delivery_address, orders.status, orders.slug, menu.img, menu.name, menu.price, users.email
+      FROM orders 
+      INNER JOIN users ON orders.user_id = users.id
+      INNER JOIN menu ON orders.menu_id = menu.id
+      ORDER BY id DESC;
+      `;
     pool.query(query)
       .then(async (result) => {
         if (result.rowCount === 0) return res.status(200).json({ message: NO_ORDER_MSG });
@@ -106,12 +113,13 @@ class Order {
   }
 
   static async placeOrder(req, res) {
-    const { mealName, qty, address } = req.body;
+    const { mealName, qty } = req.body;
     const slug = generator();
 
     const menuID = await Order.getMenuID(res, mealName);
 
     const userID = req.user.id;
+    const { address } = req.user;
 
     const query = 'INSERT INTO orders(menu_id, qty, delivery_address, slug, user_id) VALUES($1, $2, $3, $4, $5) RETURNING *';
     pool.query(query, [menuID, qty, address, slug, userID])
