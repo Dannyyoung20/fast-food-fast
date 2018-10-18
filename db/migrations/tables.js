@@ -49,12 +49,14 @@ const createAdmin = `
   INSERT INTO users(
     email, 
     password,
+    address,
     slug,
     role
     ) VALUES (
       'admin@gmail.com',
       '${hash}',
-      'https://imageurl.png',
+      '6 Enuice Olayinka Close Kosofe',
+      'ghjjkj677a_3',
       1
     );
 `;
@@ -68,8 +70,28 @@ const createMenu = `
   ) VALUES (
     'pizza',
      3000,
-     'jdkajdakj'
-  )
+     'https://image.flaticon.com/icons/svg/1194/1194006.svg'
+  ), (
+    'hamburger',
+     4000,
+     'https://image.flaticon.com/icons/svg/1046/1046784.svg'
+  ), (
+    'soda',
+     1000,
+     'https://image.flaticon.com/icons/svg/1149/1149810.svg'
+  ), (
+    'hot dog',
+     2000,
+     'https://image.flaticon.com/icons/svg/1046/1046779.svg'
+  ), (
+    'chicken',
+     5000,
+     'https://image.flaticon.com/icons/svg/1205/1205742.svg'
+  ), (
+    'cupcake',
+     500,
+     'https://image.flaticon.com/icons/svg/1161/1161646.svg'
+  );
 `;
 
 const migration = `

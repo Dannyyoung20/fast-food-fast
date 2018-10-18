@@ -115,7 +115,7 @@ describe('POST api orders route', () => {
       .end((err, response) => {
         expect(400);
         expect(response.body).to.have.property('message');
-        expect(response.body.message).to.equal('Meal name, Quantity,Address are Required');
+        expect(response.body.message).to.equal('Meal name and Quantity are Required');
         done();
       });
   });

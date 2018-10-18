@@ -9,4 +9,9 @@ const router = express.Router();
 // @access Public
 router.get('/:userID/orders', Authentication.authenticated, User.myOrderHistory);
 
+// @route GET /api/v1/users/me
+// @desc List out all the previous order for this user
+// @access Public
+router.get('/me', Authentication.authenticated, User.myDetails);
+
 export default router;

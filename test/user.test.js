@@ -40,7 +40,7 @@ describe('USER TEST', () => {
       .set('token', token)
       .send(secondData)
       .end((err, response) => {
-        const dbSlug = response.body.order.slug;
+        const dbSlug = response.body.order.item.slug;
         slug = dbSlug;
         done();
       });
@@ -51,7 +51,7 @@ describe('USER TEST', () => {
       .get(`${userRoute}/${slug}/orders`)
       .set('token', token)
       .end((err, response) => {
-        expect(404);
+        expect(200);
         expect(response.body).to.be.an('object');
         expect(response.body).to.have.property('message');
         expect(response.body).to.have.property('history');

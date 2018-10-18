@@ -14,7 +14,7 @@ const user = {
 };
 
 const postData = {
-  name: 'Hot dog',
+  name: 'dog',
   price: '1000',
   imageUrl: 'https://imageurl.png',
 };
